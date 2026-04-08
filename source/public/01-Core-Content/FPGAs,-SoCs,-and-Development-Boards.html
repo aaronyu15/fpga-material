@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>FPGAs, SoCs, and Development Boards</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="FPGAs, SoCs, and Development Boards"/><meta property="og:description" content="This page lists and explains the various FPGA chips and development boards available, categorised based on the producer (Xilinx, Altera, 3rd party), how much it costs, and the ease ..."/><meta property="og:image" content="https://aaronyu15.github.io/fpga-material//static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="This page lists and explains the various FPGA chips and development boards available, categorised based on the producer (Xilinx, Altera, 3rd party), how much it costs, and the ease ..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="01-Core-Content/FPGAs,-SoCs,-and-Development-Boards"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">FPGA Resources</a></h2><div class="spacer mobile-only"></div><div class="search"><button class="search-button" id="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="search-layout" data-preview="true"></div></div></div></div><button class="darkmode" id="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;01-Core-Content&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Others&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Syntax&quot;,&quot;collapsed&quot;:true}]" aria-controls="explorer-content" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="01-Core-Content"><button class="folder-button"><span class="folder-title">01 Core Content</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="01-Core-Content"><li><a href="../01-Core-Content/FPGAs,-SoCs,-and-Development-Boards" data-for="01-Core-Content/FPGAs,-SoCs,-and-Development-Boards">FPGAs, SoCs, and Development Boards</a></li><li><a href="../01-Core-Content/PetaLinux-Quick-Tutorial" data-for="01-Core-Content/PetaLinux-Quick-Tutorial">PetaLinux Quick Tutorial</a></li><li><a href="../01-Core-Content/Vitis-Quick-Tutorial" data-for="01-Core-Content/Vitis-Quick-Tutorial">Vitis Quick Tutorial</a></li><li><a href="../01-Core-Content/Vivado-Quick-Tutorial" data-for="01-Core-Content/Vivado-Quick-Tutorial">Vivado Quick Tutorial</a></li><li><a href="../01-Core-Content/Xilinx-Docs" data-for="01-Core-Content/Xilinx-Docs">Xilinx Docs</a></li><li><a href="../01-Core-Content/Xilinx-Terminology" data-for="01-Core-Content/Xilinx-Terminology">Xilinx Terminology</a></li></ul></div></li><li><div class="folder-outer "><ul style="padding-left:0;" class="content" data-folderul></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Others"><button class="folder-button"><span class="folder-title">Others</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Others"><li><a href="../Others/Git-Command-Line" data-for="Others/Git-Command-Line">Git Command Line</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Syntax"><button class="folder-button"><span class="folder-title">Syntax</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Syntax"><li><a href="../Syntax/Bash" data-for="Syntax/Bash">Bash</a></li><li><a href="../Syntax/LaTeX" data-for="Syntax/LaTeX">LaTeX</a></li><li><a href="../Syntax/Makefile" data-for="Syntax/Makefile">Makefile</a></li><li><a href="../Syntax/Tcl" data-for="Syntax/Tcl">Tcl</a></li></ul></div></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../01-Core-Content/">01 Core Content</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>FPGAs, SoCs, and Development Boards</a></div></nav><h1 class="article-title">FPGAs, SoCs, and Development Boards</h1><p show-comma="true" class="content-meta"><span>Apr 08, 2026</span><span>9 min read</span></p></div></div><article class="popover-hint"><p>This page lists and explains the various FPGA chips and development boards available, categorised based on the producer (Xilinx, Altera, 3rd party), how much it costs, and the ease for beginners in terms of available tutorials/intention.</p>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Terminology </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li><strong>FPGA</strong> - Field Programmable Gate Array. Typically this refers to the FPGA chip itself without connecting it to a board. You wouldn’t typically buy this outright unless you have a board design for it.</li>
+<li><strong>SOC</strong> - System On Chip. This refers to a chip that has both an FPGA and a processor core built into it. This allows software to be designed for the processor (the so-called Processing System or PS) while hardware can be designed for the FPGA (the so-called Programmable Logic or PL). Again, you wouldn’t typically buy this outright unless you have a board design for it.</li>
+<li><strong>SOM</strong> - System On Module. A term to refer to small embedded boards (credit card sized) that include an SOC along with other supporting circuits. Usually these lack connectors like USB, UART, or Ethernet to communicate to the device to help develop it. There are some starter kits available, but this category is more for use in production environments.</li>
+<li><strong>Development Boards</strong> - Larger boards than SOMs, and typically have an SOC along with a lot of other things like DDR memory, JTAG, UART, Ethernet, HDMI, DisplayPort, PCIe, mezzanine interfaces, etc, to help develop applications. The starter kits for these typically target university courses and above, so they’re a good starting point.</li>
+</ul>
+</div>
+</blockquote>
+<p>All these systems are purposed for industry development in areas like automotive, defence, space, embedded vision, robotics, and others. However, since FPGAs are repurposable, many can also be used for other endeavours like custom microprocessor design, making hardware accelerators for specific applications, research, etc.</p>
+<hr/>
+<h1 id="xilinx-family">Xilinx Family<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#xilinx-family" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>The Xilinx family of SoCs and development boards is extensive. These are typically used with Xilinx Vivado/Vitis for hardware and software design.</p>
+<h2 id="fpga">FPGA<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#fpga" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Xilinx FPGAs contain only the FPGA chip themselves, so there is no attached board, processor, etc. In other words, unless you have a board to put it on to even begin programming it, these aren’t bought by themselves. However, development boards and SOMs can contain one of these FPGA chips, and knowing what chip it is can give some insight into what it is targeted for. There are 4 FPGA “families” that Xilinx offers. The family names are only for categorising the application focus, the real FPGA chips are further sub variants for each family, sold as different “series”.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Family Name</th><th>Focus</th></tr></thead><tbody><tr><td style="text-align:center;">Spartan (S)</td><td>Low cost with higher I/O count to connect to programmable logic.</td></tr><tr><td style="text-align:center;">Artix (A)</td><td>Cost efficient with good performance for general applications.</td></tr><tr><td style="text-align:center;">Kintex (K)</td><td>Mid-range cost and power for high performance applications.</td></tr><tr><td style="text-align:center;">Virtex (V)</td><td>High cost for even higher performance applications.</td></tr></tbody></table></div>
+<p>The available series for each family are shown.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Series</th><th style="text-align:center;">Spartan</th><th style="text-align:center;">Artix</th><th style="text-align:center;">Kintex</th><th style="text-align:center;">Virtex</th><th>Notes</th></tr></thead><tbody><tr><td style="text-align:center;">6 Series</td><td style="text-align:center;">Discontinued</td><td style="text-align:center;">-</td><td style="text-align:center;">Discontinued</td><td style="text-align:center;">-</td><td>-</td></tr><tr><td style="text-align:center;">7 Series</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td><td>Original mainline family.</td></tr><tr><td style="text-align:center;">UltraScale</td><td style="text-align:center;">-</td><td style="text-align:center;">-</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td><td>New routing, improved fabric, better transceivers.</td></tr><tr><td style="text-align:center;">UltraScale+</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td><td>FinFET process, more capabilites.</td></tr></tbody></table></div>
+<p>Within each series, a family might have multiple different variants where the only difference is in the number of logic cells, DSP slices, memory, I/O, or some other resource. Essentially, it’s the same chip but with different amounts of inbuilt logic. Specific chips will have part numbers that can identify what family and series the chip is from.</p>
+<p>An example part number might look like this: <code>XC7K160T</code></p>
+<p>Where <code>XC = Xilinx Chip</code>, <code>7</code> refers to the 7 series, <code>K</code> refers to Kintex, and <code>160</code> is the approximate number of logic cells available (in thousands). The <code>T</code>, if present, refers to the availability of high speed transceivers, which lets you know if the FPGA supports high-speed protocols like PCIe, HDMI, DisplayPort, etc. If there is no <code>T</code>, the chip is used with only general-purpose I/O.</p>
+<p>An example part number for the UltraScale+ series might look like this: <code>XCVU7P</code>.</p>
+<p>Where <code>XC = Xilinx Chip</code>, <code>V</code> refers to Virtex, <code>U</code> refers to the UltraScale series, <code>7</code> is an indication of device size, and <code>P</code> refers to the UltraScale+ series. If <code>U</code> is present without <code>P</code>, the part is just an UltraScale chip.</p>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Although there is no hard-logic processors like there are in SoCs, Xilinx FPGAs can be programmed with the MicroBlaze Processor IP to perform similar features, although this does take up resources in the programmable logic. </p></div>
+                  
+                </div>
+</blockquote>
+<p>Within each series, there are also “automotive-grade”, “defence-grade”, and “space-grade” classes, however those are more targeted towards specific applications so they won’t be discussed here.</p>
+<h2 id="soc">SOC<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#soc" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Xilinx SOCs are a single chip that contains both an FPGA (<a href="../PL" class="internal" data-slug="PL">PL</a>) and integrated processor(s) (<a href="../PS" class="internal" data-slug="PS">PS</a>). Note that these “FPGAs” are not the same as the ones in the FPGA section above.  There are 2 main “families” of SOCs from Xilinx. Unlike the FPGAs, the SOCs have differing numbers of “series”.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Family Name</th><th>Focus</th></tr></thead><tbody><tr><td style="text-align:center;">Zynq (Z)</td><td>Embedded systems with integrated ARM processors and FPGA fabric.</td></tr><tr><td style="text-align:center;">Versal (V)</td><td>High-performance computing with a mix of CPUs, FPGAs, DSPs, AI Engines, etc.</td></tr></tbody></table></div>
+<p>The available series for each family are shown.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Series</th><th>Description</th><th style="text-align:center;">Example Part Names</th></tr></thead><tbody><tr><td style="text-align:center;">Zynq 7000 SoC</td><td>Lowest cost. Contains a single-core (7000S) or dual-core (7000) ARM Cortex-A9 alongside FPGA fabric.</td><td style="text-align:center;">XC7Z007S, XC7Z010</td></tr><tr><td style="text-align:center;">Zynq UltraScale+ MPSoC</td><td>Mid-range cost. Contains dual-core (CG), quad-core + GPU (EG), or quad-core + GPU + video codec (EV).</td><td style="text-align:center;">XCZU1CG, XCZU1EG, XCZU4EV</td></tr><tr><td style="text-align:center;">Zynq UltraScale+ RFSoC</td><td>Very high cost. Used for Radio Frequency (RF) applications so it has special ADC/DAC blocks alongside the ARM cores.</td><td style="text-align:center;">XCZU21DR, XCZU39DR, XCZU42DR</td></tr><tr><td style="text-align:center;">Versal Prime Series</td><td>General-purpose applications (no AI engines).</td><td style="text-align:center;">XCVM1102</td></tr><tr><td style="text-align:center;">Versal Premium Series</td><td>High-speed networking, PCIe Gen5, 600 Gb/s Ethernet.</td><td style="text-align:center;">XCVP1002</td></tr><tr><td style="text-align:center;">Versal RF Series</td><td>Used for RF applications so it has special ADC/DAC blocks alongside all the other cores.</td><td style="text-align:center;">XCVR1602</td></tr><tr><td style="text-align:center;">Versal AI Edge Series</td><td>Designed for edge AI (low power, real-time inference).</td><td style="text-align:center;">XCVE2002</td></tr><tr><td style="text-align:center;">Versal AI Core Series</td><td>Contains AI engines for ML/AI purposes.</td><td style="text-align:center;">XCVC1502</td></tr><tr><td style="text-align:center;">Versal HBM Series</td><td>Has integrated High Bandwidth Memory (HBM2) for memory intensive applications.</td><td style="text-align:center;">XCVH1522</td></tr></tbody></table></div>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>The Versal Prime, Premium, and AI Edge series all have Gen 2 variants, but those are still relatively new. Presumably the others will get Gen 2 variants as well at some point. </p></div>
+                  
+                </div>
+</blockquote>
+<p>Everything in the Versal or Zynq UltraScale+ RFSoC categories typically cost a fortune ($10,000+ USD), and so it’s unlikely for you to ever own a personal one if you’re a hobbyist. They are not typically sold in development boards/evaluation kits either, aside from a select few developed by AMD. Though there are a few partner SOMs that seem to be in development with unlisted prices.</p>
+<p>For all intents and purposes, most FPGA users will want to focus on the Zynq 7000 and UltraScale+ MPSoC categories since they are more common and more affordable.</p>
+<h2 id="system-on-module">System On Module<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#system-on-module" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>A System on Module (SOM) takes one of the FPGA or SOC chips and places it on a small board for development or integration into a production system. The number of added components can vary greatly, but typically things like DDR memory, Flash memory, microSD card slots, or a programmable interface like JTAG are included. While some SOMs come equipped with enough to use like an FPGA learning board, many are meant for use in production environments so be wary of that when looking to purchase one for personal use.</p>
+<p>SOMs produced by Xilinx are called the “Kria” family, while boards produced by SOM partners have their own naming schemes based on the partner. All the available SOMs can be searched for on the official <a href="https://www.amd.com/en/search/adaptive-socs-and-fpgas/boards.html#f-amd_product_board_type=SOMs" class="external">AMD page<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>. Most SOMs use the Zynq UltraScale+ MPSoC or Zynq 7000, with very few using the Spartan/Artix/Kintex/Virtex lineup.</p>
+<p>However, most of the time you’ll want a development board if you’re trying to buy an FPGA/SOC for personal use.</p>
+<h2 id="development-boards">Development Boards<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#development-boards" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Development boards are self-explanatory in name. Most boards are equipped with enough ports, memory, communication protocols, and cores to be versatile for any application. Xilinx produces their own development boards alongside their partners. Costs range from several hundred dollars to several thousand depending on the board and FPGA/SOC being used.</p>
+<p>After reading the above information regarding FPGAs and SOCs, a comprehensive list of development boards can be found <a href="https://www.fpgadeveloper.com/list-of-fpga-dev-boards-by-device/" class="external">here<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>. Note that some of the links may point to SOMs, which may not be as developer friendly.</p>
+<p>The tables below summarize some board options along with relative prices in USD.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>To see if your Vivado license can be used with a certain device, check <a href="https://docs.amd.com/r/en-US/ug973-vivado-release-notes-install-license/Supported-Devices" class="external">UG973<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>.</p></div>
+                  
+                </div>
+</blockquote>
+<p>Prices with a * mean there are alternative options available, usually with more LUTs and resources.</p>
+<h3 id="-beginner--inexpensive-boards">🔰 Beginner / Inexpensive Boards<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-beginner--inexpensive-boards" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote class="callout question" data-callout="question">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>If you want a beginner FPGA board, sticking to something like the Basys3, Nexys A7 would be fine. If you want to delve more with SOCs, the ZUBoard-1CG, Ultra96-v2, or PYNQ-Z1 would be good. If you want both flavours, the ZUBoard-1CG or Blackboard may be good options. </p></div>
+                  
+                </div>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Board Name</th><th>Device Name</th><th>Type</th><th>Device</th><th>Vendor</th><th>Price</th><th>Use Case</th></tr></thead><tbody><tr><td><a href="https://digilent.com/shop/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/" class="external">Basys 3<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Artix-7</td><td>FPGA</td><td>XC7A35T-1CPG236C</td><td>Digilent</td><td>$165</td><td>Learning FPGA Basics.</td></tr><tr><td><a href="https://digilent.com/shop/nexys-a7-fpga-trainer-board-recommended-for-ece-curriculum/" class="external">Nexys A7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Artix-7</td><td>FPGA</td><td>XC7A100T-1CSG324C</td><td>Digilent</td><td>$349</td><td>Learning FPGA Basics.</td></tr><tr><td><a href="https://digilent.com/shop/arty-s7-spartan-7-fpga-development-board/" class="external">Arty S7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Spartan-7</td><td>FPGA</td><td>XC7S25-CSGA324</td><td>Digilent</td><td>$119*</td><td>Educational/Starter Kit.</td></tr><tr><td><a href="https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/" class="external">Arty A7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Artix-7</td><td>FPGA</td><td>XC7A100TCSG324-1</td><td>Digilent</td><td>$299</td><td>Educational/Starter Kit.</td></tr><tr><td><a href="https://digilent.com/shop/arty-z7-zynq-7000-soc-development-board/" class="external">Arty Z7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z010-1CLG400C</td><td>Digilent</td><td>$249*</td><td>Educational/Starter Kit.</td></tr><tr><td><a href="https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development/" class="external">Cora Z7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z007S-1CLG400C</td><td>Digilent</td><td>$149</td><td>Learn Zynq-based designs.</td></tr><tr><td><a href="https://digilent.com/shop/pynq-z1-python-productivity-for-zynq-7000-arm-fpga-soc/" class="external">PYNQ-Z1<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z020-1CLG400C</td><td>Digilent</td><td>$299</td><td>Learn Zynq-based designs.</td></tr><tr><td><a href="https://digilent.com/shop/zedboard-zynq-7000-arm-fpga-soc-development-board/" class="external">Zedboard<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z020-CLG484</td><td>Digilent</td><td>$589</td><td>Educational.</td></tr><tr><td><a href="https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/" class="external">Zybo Z7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z010-1CLG400C</td><td>Digilent</td><td>$299*</td><td>Educational.</td></tr><tr><td><a href="https://digilent.com/shop/cmod-a7-35t-breadboardable-artix-7-fpga-module/" class="external">Cmod A7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Artix-7</td><td>FPGA</td><td>XC7A35</td><td>Digilent</td><td>$99</td><td>Breadboard/prototype boards.</td></tr><tr><td><a href="https://digilent.com/shop/cmod-s7-breadboardable-spartan-7-fpga-module/" class="external">Cmod S7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Spartan-7</td><td>FPGA</td><td>XC7S25-1CSGA225C</td><td>Digilent</td><td>$99</td><td>Breadboard/prototype boards.</td></tr><tr><td><a href="https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/zuboard-1cg" class="external">ZUBoard-1CG<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ MPSoC</td><td>SOC</td><td>XCZU1CG-1SBVA484E</td><td>Avnet</td><td>$159</td><td>Learn Zynq UltraScale+ based designs.</td></tr><tr><td><a href="https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/ultra96-v2" class="external">Ultra96-v2<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ MPSoC</td><td>SOC</td><td>XCZU3EG-1SBVA484E</td><td>Avnet</td><td>$299</td><td>Learn Zynq UltraScale+ based designs.</td></tr><tr><td><a href="https://www.realdigital.org/hardware/blackboard" class="external">Blackboard<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z007S</td><td>RealDigital</td><td>$184</td><td>Learn FPGA/Microcontroller Basics.</td></tr><tr><td><a href="https://www.realdigital.org/hardware/boolean" class="external">Boolean Board<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Spartan-7</td><td>FPGA</td><td>XC7S50-CSGA324</td><td>RealDigital</td><td>$92</td><td>Learn FPGA Basics.</td></tr></tbody></table></div>
+<h3 id="️-intermediate--mid-range-boards">⚙️ Intermediate / Mid-range Boards<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-intermediate--mid-range-boards" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Board Name</th><th>Device Name</th><th>Type</th><th>Device</th><th>Vendor</th><th>Price</th><th>Use Case</th></tr></thead><tbody><tr><td><a href="https://digilent.com/shop/nexys-video-artix-7-fpga-trainer-board-for-multimedia-applications/" class="external">Nexys Video<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Artix-7</td><td>FPGA</td><td>XC7A200T-1SBG484C</td><td>Digilent</td><td>$549</td><td>Multimedia video and audio processing trainer board.</td></tr><tr><td><a href="https://digilent.com/shop/eclypse-z7/" class="external">Eclypse Z7<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z020-1CLG484C</td><td>Digilent</td><td>$499</td><td>Developing embedded measurement systems.</td></tr><tr><td><a href="https://www.realdigital.org/hardware/rfsoc-4x2" class="external">RFSoC 4x2<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ RFSoC</td><td>SOC</td><td>ZU48DR</td><td>RealDigital</td><td>$2149</td><td>Radio Frequency applications such as Software Defined Radio (SDR).</td></tr><tr><td><a href="https://www.amd.com/en/products/system-on-modules/kria/k26/kv260-vision-starter-kit.html" class="external">Kria KV260<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ MPSoC</td><td>SOC</td><td>XCK26 (Kria Zynq UltraScale+)</td><td>AMD</td><td>$249</td><td>Vision starter kit.</td></tr><tr><td><a href="https://www.amd.com/en/products/system-on-modules/kria/k26/kr260-robotics-starter-kit.html" class="external">Kria KR260<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ MPSoC</td><td>SOC</td><td>XCK26 (Kria Zynq UltraScale+)</td><td>AMD</td><td>$349</td><td>Robotics starter kit.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/sp701.html" class="external">SP701<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Spartan-7</td><td>FPGA</td><td>XC7S100</td><td>AMD</td><td>$836</td><td>Spartan-7 evaluation kit for general purpose applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/ek-a7-ac701-g.html" class="external">AC701<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Artix-7</td><td>FPGA</td><td>XC7A200T-2FBG676C</td><td>AMD</td><td>$1678</td><td>Artix-7 evaluation kit for general purpose applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/ek-z7-zc702-g.html" class="external">ZC702<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-7000</td><td>SOC</td><td>XC7Z020-CLG484-1</td><td>AMD</td><td>$1160</td><td>Mid-range general purpose.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/ek-u1-zcu102-g.html" class="external">ZCU102<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ MPSoC</td><td>SOC</td><td>XCZU9EG-2FFVB1156</td><td>AMD</td><td>$3234</td><td>Mid-range general purpose.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/zcu104.html" class="external">ZCU104<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ MPSoC</td><td>SOC</td><td>XCZU7EV-2FFVC1156</td><td>AMD</td><td>$1678</td><td>Mid-range general purpose.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/zcu106.html" class="external">ZCU106<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq UltraScale+ MPSoC</td><td>SOC</td><td>XCZU7EV-2FFVC1156</td><td>AMD</td><td>$3234</td><td>Mid-range general purpose.</td></tr></tbody></table></div>
+<h3 id="-advanced--more-expensive-boards">💼 Advanced / More Expensive Boards<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-advanced--more-expensive-boards" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Board Name</th><th>Device Name</th><th>Type</th><th>Device</th><th>Vendor</th><th>Price</th><th>Use Case</th></tr></thead><tbody><tr><td><a href="https://digilent.com/shop/genesys-zu-zynq-ultrascale-mpsoc-development-board/" class="external">Genesys ZU<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Zynq-UltraScale+</td><td>SOC</td><td>XCZU3EG-SFVC784-1-E</td><td>Digilent</td><td>$1249*</td><td>Multimedia, automotive, surveillance, and embedded vision.</td></tr><tr><td><a href="https://digilent.com/shop/genesys-2-kintex-7-fpga-development-board/" class="external">Genesys 2<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Kintex-7</td><td>FPGA</td><td>XC7K325T-2FFG900C</td><td>Digilent</td><td>$1099</td><td>Data and video processing, general purpose.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/dk-v7-vc709-g.html" class="external">VC709<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Virtex-7</td><td>FPGA</td><td>XC7VX690T-2FFG1761C</td><td>AMD</td><td>$8094</td><td>High performance general purpose applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/kcu105.html" class="external">KCU105<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Kintex UltraScale</td><td>FPGA</td><td>XCKU040-2FFVA1156E</td><td>AMD</td><td>$6495</td><td>Data center / DSP application prototyping.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/ek-u1-kcu116-g.html" class="external">KCU116<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Kintex UltraScale+</td><td>FPGA</td><td>XCKU5P-2FFVB676E</td><td>AMD</td><td>$6495</td><td>High end data transfer applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/ek-u1-vcu108-g.html" class="external">VCU108<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Virtex UltraScale</td><td>FPGA</td><td>CVU095-2FFVA2104E</td><td>AMD</td><td>$11995</td><td>High end applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vcu118.html" class="external">VCU118<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Virtex UltraScale+</td><td>FPGA</td><td>XCVU9P-L2FLGA2104E</td><td>AMD</td><td>$14995</td><td>High end applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vcu129.html" class="external">VCU129<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Virtex UltraScale+</td><td>FPGA</td><td>XCVU29P-L2FSGA2577E</td><td>AMD</td><td>$20995</td><td>High end applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vek280.html" class="external">VEK280<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Versal AI Edge Series</td><td>SOC</td><td>XCVE2802-2MSEVSVH1760</td><td>AMD</td><td>$6995</td><td>Edge AI prototyping.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vhk158.html" class="external">VHK158<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Versal HBM Series</td><td>SOC</td><td>XCVH1582-2MSEVSVA3697</td><td>AMD</td><td>$14995</td><td>Memory intensive applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vmk180.html" class="external">VMK180<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Versal Prime Series</td><td>SOC</td><td>XCVM1802-2MSEVSVA2197</td><td>AMD</td><td>$9345</td><td>High end applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vpk120.html" class="external">VPK120<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Versal Premium Series</td><td>SOC</td><td>XCVP1202-2MSEVSVA2785</td><td>AMD</td><td>$11994</td><td>High end applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vpk180.html" class="external">VPK180<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Versal Premium Series</td><td>SOC</td><td>XCVP1802-2MSELSVC4072</td><td>AMD</td><td>$17995</td><td>High end applications.</td></tr><tr><td><a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/evaluation-boards/vck190.html" class="external">VCK190<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Versal AI Core Series</td><td>SOC</td><td>XCVC1902-2MSEVSVA2197</td><td>AMD</td><td>$13195</td><td>AI applications.</td></tr></tbody></table></div>
+<h2 id="alveo-family">Alveo Family<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#alveo-family" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Xilinx also offers the Alveo product line, which are <em>technically</em> SoC devices since they are based on FPGA/SoC families such as Versal and Virtex, but AMD markets them as data center accelerators and not FPGA development boards or solutions. This note is included since they are still FPGAs, but like Versal, it is unlikely the layman will ever get to use one.</p>
+<h1 id="intel-family">Intel Family<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#intel-family" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h1 id="other-fpgas--development-boards">Other FPGAs / Development Boards<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#other-fpgas--development-boards" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="toc desktop-only"><button type="button" id="toc" class aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content" class><ul class="overflow"><li class="depth-0"><a href="#xilinx-family" data-for="xilinx-family">Xilinx Family</a></li><li class="depth-1"><a href="#fpga" data-for="fpga">FPGA</a></li><li class="depth-1"><a href="#soc" data-for="soc">SOC</a></li><li class="depth-1"><a href="#system-on-module" data-for="system-on-module">System On Module</a></li><li class="depth-1"><a href="#development-boards" data-for="development-boards">Development Boards</a></li><li class="depth-2"><a href="#-beginner--inexpensive-boards" data-for="-beginner--inexpensive-boards">🔰 Beginner / Inexpensive Boards</a></li><li class="depth-2"><a href="#️-intermediate--mid-range-boards" data-for="️-intermediate--mid-range-boards">⚙️ Intermediate / Mid-range Boards</a></li><li class="depth-2"><a href="#-advanced--more-expensive-boards" data-for="-advanced--more-expensive-boards">💼 Advanced / More Expensive Boards</a></li><li class="depth-1"><a href="#alveo-family" data-for="alveo-family">Alveo Family</a></li><li class="depth-0"><a href="#intel-family" data-for="intel-family">Intel Family</a></li><li class="depth-0"><a href="#other-fpgas--development-boards" data-for="other-fpgas--development-boards">Other FPGAs / Development Boards</a></li></ul></div></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.4.0</a> © 2026</p><ul></ul></footer></div></div></body><script type="application/javascript">function c(){let t=this.parentElement;t.classList.toggle("is-collapsed");let l=t.classList.contains("is-collapsed")?this.scrollHeight:t.scrollHeight;t.style.maxHeight=l+"px";let o=t,e=t.parentElement;for(;e;){if(!e.classList.contains("callout"))return;let n=e.classList.contains("is-collapsed")?e.scrollHeight:e.scrollHeight+o.scrollHeight;e.style.maxHeight=n+"px",o=e,e=e.parentElement}}function i(){let t=document.getElementsByClassName("callout is-collapsible");for(let s of t){let l=s.firstElementChild;if(l){l.addEventListener("click",c),window.addCleanup(()=>l.removeEventListener("click",c));let e=s.classList.contains("is-collapsed")?l.scrollHeight:s.scrollHeight;s.style.maxHeight=e+"px"}}}document.addEventListener("nav",i);window.addEventListener("resize",i);
+</script><script type="module">
+          let mermaidImport = undefined
+          document.addEventListener('nav', async () => {
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
+          });
+          </script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>

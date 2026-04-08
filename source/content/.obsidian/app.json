@@ -1,1 +1,8 @@
-{}
+{
+  "readableLineLength": false,
+  "vimMode": true,
+  "promptDelete": false,
+  "attachmentFolderPath": "attachments",
+  "useTab": false,
+  "smartIndentList": true
+}

@@ -1,0 +1,19 @@
+{
+  "editor:delete-paragraph": [],
+  "templater-obsidian:Templates/orange.md": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "E"
+    }
+  ],
+  "templater-obsidian:insert-templater": [],
+  "command-palette:open": [
+    {
+      "modifiers": [],
+      "key": "F2"
+    }
+  ],
+  "workspace:edit-file-title": []
+}

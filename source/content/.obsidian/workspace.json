@@ -1,62 +1,56 @@
 {
   "main": {
-    "id": "2e9225e34664efd4",
+    "id": "7a8c2be7ede666df",
     "type": "split",
     "children": [
       {
-        "id": "0571c1c94d829fac",
+        "id": "77e980141dce8929",
         "type": "tabs",
         "children": [
           {
-            "id": "47ef711f7e8c1d64",
+            "id": "86a6698e10aa16a9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "01 Core Content/Vivado Quick Tutorial.md",
                 "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2d8837e6263008e3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "category-folder/Some note.md",
-                "mode": "source",
-                "source": false
-              }
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Vivado Quick Tutorial"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "1243752a4df710bb",
+    "id": "445e25200266fe6f",
     "type": "split",
     "children": [
       {
-        "id": "8a4c81639dc8783e",
+        "id": "64cd045c7be06f6e",
         "type": "tabs",
+        "dimension": 80.1980198019802,
         "children": [
           {
-            "id": "b77831b90dd9f87b",
+            "id": "ac017669f9193620",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
-            "id": "0829eb50dbb8a2b3",
+            "id": "e2c8fe90ec97e8e7",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -67,38 +61,64 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
-            "id": "436d75c49c949463",
+            "id": "8d5f1d74d4baad55",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      },
+      {
+        "id": "565314b472c7f6f2",
+        "type": "tabs",
+        "dimension": 19.8019801980198,
+        "children": [
+          {
+            "id": "c6d92fd67abd18d6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "01 Core Content/Vivado Quick Tutorial.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Vivado Quick Tutorial"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 317.5
   },
   "right": {
-    "id": "ba1ec06a672fb227",
+    "id": "4999bac22620b0d2",
     "type": "split",
     "children": [
       {
-        "id": "6cea78168fbf9ccd",
+        "id": "195926cb6c9496db",
         "type": "tabs",
         "children": [
           {
-            "id": "2aa5a4c073617928",
+            "id": "af98fe01060c43ea",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "category-folder/Some note.md",
+                "file": "FPGAs, SoCs, and Development Boards.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,40 +126,67 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for FPGAs, SoCs, and Development Boards"
             }
           },
           {
-            "id": "5acb7020384970a8",
+            "id": "ad750d80aa950c31",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "category-folder/Some note.md",
+                "file": "FPGAs, SoCs, and Development Boards.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from FPGAs, SoCs, and Development Boards"
             }
           },
           {
-            "id": "f850ba7e9e699bea",
+            "id": "45a7f054fa73061b",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
-              }
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
-            "id": "2d9129bb8dcf7983",
+            "id": "b31cf3168a06b2a9",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "category-folder/Some note.md"
-              }
+                "file": "FPGAs, SoCs, and Development Boards.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of FPGAs, SoCs, and Development Boards"
+            }
+          },
+          {
+            "id": "977519f107429dbd",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
             }
           }
         ]
@@ -151,20 +198,62 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-git:Open Git source control": false,
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "2d8837e6263008e3",
+  "active": "86a6698e10aa16a9",
   "lastOpenFiles": [
-    "category-folder/index.md",
-    "category-folder/Some note.md",
     "index.md",
-    "category-folder"
+    "01 Core Content/PetaLinux Quick Tutorial.md",
+    "01 Core Content/Vitis Quick Tutorial.md",
+    "01 Core Content/Vivado Quick Tutorial.md",
+    "01 Core Content/FPGAs, SoCs, and Development Boards.md",
+    "01 Core Content/Xilinx Docs.md",
+    "01 Core Content/Xilinx Terminology.md",
+    "FPGAs, SoCs, and Development Boards.md",
+    "Xilinx Docs.md",
+    "Xilinx Terminology.md",
+    "01 Core Content",
+    "private/Vitis Quick Tutorial.md",
+    "private/Vivado Quick Tutorial.md",
+    "private/AXI/AXI-Stream Template.md",
+    "private/AXI/AXI-Lite Template.md",
+    "private/AXI/AXI-Full Template.md",
+    "private/AXI/AXI VIP.md",
+    "private/AXI/AXI Guide.md",
+    "private/AXI",
+    "private/Boards/ZUBoard.md",
+    "private/Boards/ZCU102.md",
+    "private/Boards/Pynq.md",
+    "private/Boards/Microblaze.md",
+    "private/Boards/General.md",
+    "private/Boards",
+    "private/Debug Notes/Vivado Notes of Suffering.md",
+    "private/Debug Notes/Vitis Notes of Suffering.md",
+    "private/Debug Notes",
+    "private/Design Notes/Vitis Notes.md",
+    "private/Design Notes/Vitis Baremetal.md",
+    "private/Design Notes",
+    "private/Linux resources",
+    "private/User Guides",
+    "Linux resources",
+    "Design Notes/Vitis Notes.md.partial",
+    "attachments/Pasted image 20251128225659.png",
+    "attachments/Pasted image 20251127121929.png",
+    "attachments/Pasted image 20251127113449.png",
+    "attachments/Pasted image 20251127110819.png",
+    "attachments/Pasted image 20251127110514.png",
+    "attachments/Pasted image 20251113002055.png",
+    "attachments/Pasted image 20251112142151.png",
+    "attachments/Pasted image 20251112141927.png",
+    "Debug Notes",
+    "attachments/Pasted image 20251016022007.png",
+    "attachments/Pasted image 20251016021841.png"
   ]
 }

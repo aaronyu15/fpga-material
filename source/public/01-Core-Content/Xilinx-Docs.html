@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Xilinx Docs</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="Xilinx Docs"/><meta property="og:description" content="..."/><meta property="og:image" content="https://aaronyu15.github.io/fpga-material//static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="01-Core-Content/Xilinx-Docs"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">FPGA Resources</a></h2><div class="spacer mobile-only"></div><div class="search"><button class="search-button" id="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="search-layout" data-preview="true"></div></div></div></div><button class="darkmode" id="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;01-Core-Content&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Others&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Syntax&quot;,&quot;collapsed&quot;:true}]" aria-controls="explorer-content" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="01-Core-Content"><button class="folder-button"><span class="folder-title">01 Core Content</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="01-Core-Content"><li><a href="../01-Core-Content/FPGAs,-SoCs,-and-Development-Boards" data-for="01-Core-Content/FPGAs,-SoCs,-and-Development-Boards">FPGAs, SoCs, and Development Boards</a></li><li><a href="../01-Core-Content/PetaLinux-Quick-Tutorial" data-for="01-Core-Content/PetaLinux-Quick-Tutorial">PetaLinux Quick Tutorial</a></li><li><a href="../01-Core-Content/Vitis-Quick-Tutorial" data-for="01-Core-Content/Vitis-Quick-Tutorial">Vitis Quick Tutorial</a></li><li><a href="../01-Core-Content/Vivado-Quick-Tutorial" data-for="01-Core-Content/Vivado-Quick-Tutorial">Vivado Quick Tutorial</a></li><li><a href="../01-Core-Content/Xilinx-Docs" data-for="01-Core-Content/Xilinx-Docs">Xilinx Docs</a></li><li><a href="../01-Core-Content/Xilinx-Terminology" data-for="01-Core-Content/Xilinx-Terminology">Xilinx Terminology</a></li></ul></div></li><li><div class="folder-outer "><ul style="padding-left:0;" class="content" data-folderul></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Others"><button class="folder-button"><span class="folder-title">Others</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Others"><li><a href="../Others/Git-Command-Line" data-for="Others/Git-Command-Line">Git Command Line</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Syntax"><button class="folder-button"><span class="folder-title">Syntax</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Syntax"><li><a href="../Syntax/Bash" data-for="Syntax/Bash">Bash</a></li><li><a href="../Syntax/LaTeX" data-for="Syntax/LaTeX">LaTeX</a></li><li><a href="../Syntax/Makefile" data-for="Syntax/Makefile">Makefile</a></li><li><a href="../Syntax/Tcl" data-for="Syntax/Tcl">Tcl</a></li></ul></div></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../01-Core-Content/">01 Core Content</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Xilinx Docs</a></div></nav><h1 class="article-title">Xilinx Docs</h1><p show-comma="true" class="content-meta"><span>Apr 08, 2026</span><span>11 min read</span></p></div></div><article class="popover-hint"><blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>General Information </p></div>
+                  
+                </div>
+<div class="callout-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Link</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://docs.amd.com/p/design-hubs" class="external">Design Hubs Landing Page<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Official AMD landing page that contains organized links to all the most recent user guides and tutorials.</td></tr><tr><td><a href="https://docs.amd.com/search/all?content-lang=en-US" class="external">AMD Technical Information Portal<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>The general search site for all documents.</td></tr><tr><td><a href="https://docs.amd.com/r/en-US/ug973-vivado-release-notes-install-license/Release-Notes" class="external">Installation and setup<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Vivado release notes, how to install + operating system support.</td></tr><tr><td><a href="https://docs.amd.com/r/en-US/ug1033-cp210x-usb-uart-install/Silicon-Labs-CP210x-USB-to-UART-Installation-Guide" class="external">USB-to-UART Installation Guide<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Driver installation for Windows / Mac.</td></tr><tr><td><a href="https://adaptivesupport.amd.com/s/article/33770?language=en_US" class="external">License Limits<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>How to check what version of Vivado/Vitis is supported by your available license.</td></tr></tbody></table></div>
+</div>
+</blockquote>
+<h1 id="installation-steps">Installation Steps<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#installation-steps" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Before you begin </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Refer to <a href="https://docs.amd.com/r/en-US/ug973-vivado-release-notes-install-license/Release-Notes" class="external">UG973 Installation and setup<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>  for the full installation procedure.
+Install Vivado and Vitis by downloading the installer from the main <a href="https://www.xilinx.com/support/download.html" class="external">download page<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>.
+Make sure the operating system being used is <a href="https://docs.amd.com/r/en-US/ug973-vivado-release-notes-install-license/Supported-Operating-Systems" class="external">supported<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> (Note to change the document to the version of Vivado you want to install).
+This will install Vivado and Vitis themselves as well as any selected board files. Drivers need to be installed separately on Linux.</p>
+</div>
+</blockquote>
+<p>Apparently newer Ubuntu versions have the USB-to-UART driver already (CP210x). To check if they exist, run</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">modinfo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> usbserial</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">modinfo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> cp210x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> </span></span></code></pre></figure>
+<p>You will still have to install these Vivado specific “Cable Drivers” (and allow group access to /dev/ttyUSB# if using UART). These commands perform both steps:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Vivado Install </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">/data/xicom/cable_drivers/lin64/install_script/install_drivers/</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ./install_drivers</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> adduser</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $USER </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">dialout</span></span></code></pre></figure>
+<hr/>
+<h1 id="guides">Guides<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#guides" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>The official <a href="https://docs.amd.com/p/design-hubs" class="external">Design Hubs Landing Page<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> contains an organized set of links that you can use to find relevant user guides and tutorials for you purpose. However, there are a lot of them and it may not immediately be clear where to start or what is useful to you. In this page I organize these documents into tables with brief descriptions to make finding useful content easier.</p></div>
+                  
+                </div>
+</blockquote>
+<p>Notation:
+✅ - Recommended
+🤔 - Optional
+❌ - Skippable</p>
+<p>The following sections are organized based on relevance to Vivado, Vitis, and specific FPGA development boards.</p>
+<hr/>
+<h1 id="vivado">Vivado<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vivado" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>Vivado is the main tool that allows you to convert a hardware design (either from hand-coded RTL files or IP blocks) into a bitstream to program the Programmable Logic (PL) side of the FPGA. In Vivado you can perform simulation, synthesis, implementation, and bitstream programming. Aside from simulation, these steps depend on the board that is selected since the board determines the available hardware resources, pins, pinout layout, etc.</p>
+<h2 id="vivado-user-guides-and-tutorials">Vivado User Guides and Tutorials<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vivado-user-guides-and-tutorials" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Vivado user guides give instructions on how to use the various features in Vivado. Typically, each user guide has an accompanying tutorial that goes along with it. It is recommended to run through the tutorial first as it introduces the main content, and then refer to the user guide afterwards to learn the full extent of the topic.</p>
+<p>Vivado tutorials have step-by-step labs that guide you through toy designs to demonstrate parts of the design flow.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th style="text-align:center;">Tutorial</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">❌</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug910-vivado-getting-started/Vivado-Design-Suite-Overview" class="external">UG910<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;">-</td><td>Getting Started</td><td>Extremely brief and goes over nothing that isn’t covered elsewhere. Read it if you want to get an idea of Vivado, but never plan to actually use it.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug892-vivado-design-flows-overview/Vivado-System-Level-Design-Flows" class="external">UG892<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug888-vivado-design-flows-overview-tutorial/Vivado-Design-Flows-Overview" class="external">UG888<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Design Flows Overview</td><td>The first steps of using Vivado. Details are focused on the Project/Non-Project Mode flows. Some steps of using the GUI interface, performing elaboration, synthesis, implementation, and bitstream generation in the context of the two flows. Some discussion on IP usage. Recommendations are given for version control methods when working in large or small teams. Aside from the project flows, a lot of this content is covered in more detail in later user guides.<br/><br/>The tutorial contains mostly examples of how to use the GUI for Project Mode and how to use tcl scripts for Non-Project Mode flows. There are example tcl scripts provided.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug893-vivado-ide/Using-the-Vivado-IDE" class="external">UG893<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;">-</td><td>Using the Vivado IDE</td><td>Goes through many of the GUI windows including the default layout, available windows (such as Project Summary, Sources, Netlist, Constraints, Properties, Schematic, Hierarchy, Reports, Design Runs, Package Pins, I/O Ports), and environment configurations (Tool Settings, Project Settings, Shortcuts, Run Strategies, Report Strategies, Window Layouts, and adding Custom GUI Menu Commands). Useful even if you plan on using a tcl based approach since many of the core GUI buttons are explained here.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug895-vivado-system-level-design-entry/Introduction?tocId=jpw0V~nlkti0~6FlwSpcsA" class="external">UG895<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;">-</td><td>System-Level Design Entry</td><td>Has a lot of repeated information about setting up projects and adding source files. The sections on RTL analysis using the linter in the elaboration flow are useful, along with some introductions on debugging. There is a section that discusses the FPGA board files (.xml) which are used by Vivado, which is useful if you plan to create a PCB with a Xilinx FPGA on it.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug896-vivado-ip/IP-Centric-Design-Flow" class="external">UG896<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug939-vivado-designing-with-ip-tutorial/Designing-with-IP-Overview" class="external">UG939<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Designing with IP</td><td>Goes through how to use IP obtained from the main source (Xilinx IP catalog). Contains mostly information about recommendations for how to use IP in terms of source control, what the different generated output products are for an IP and how they are used for simulation, synthesis, and implementation. Generally, the advice is to treat each IP like a standalone (out-of-context) module, which you integrate into your design. <br/><br/>The tutorial contains 4 examples, that detail (a) generating an IP from the catalog and using it in the design, (b) generating an IP and using it in third-party netlist flows in a post-synthesis project, (c) tcl commands to generate IP for Project Mode and (d) Non-Project Mode flows.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug903-vivado-using-constraints/Introduction" class="external">UG903<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug945-vivado-using-constraints-tutorial/Using-Constraints-Tutorial" class="external">UG945<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Using Constraints</td><td>Describes XDC constraints for things like clocks, I/O delays, recommendations.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug900-vivado-logic-simulation/Overview" class="external">UG900<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug937-vivado-design-suite-simulation-tutorial/Vivado-Simulator-Overview" class="external">UG937<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Logic Simulation</td><td>How to simulate, support for other simulators, HDL languages, UVM, etc. The user guide has many skippable sections since it details the usage of all possible simulators.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug901-vivado-synthesis/Introduction" class="external">UG901<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;">-</td><td>Synthesis</td><td>Synthesis strategies, and support for language specific constructs/attributes.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug904-vivado-implementation/Preparing-for-Implementation" class="external">UG904<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug986-vivado-tutorial-implementation/Navigating-Content-by-Design-Process" class="external">UG986<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Implementation</td><td>How to implement, physical design constraints, + viewing and interpreting implementation results.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug906-vivado-design-analysis/Introduction" class="external">UG906<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug938-vivado-design-analysis-closure-tutorial/Tutorial-Overview" class="external">UG938<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Design Analysis and Closure Techniques</td><td>Suggestions on improving design such as viewing reports, DRC, timing analysis.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug907-vivado-power-analysis-optimization/Power-in-AMD-Devices" class="external">UG907<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug997-vivado-power-analysis-optimization-tutorial/Power-Analysis-and-Optimization-Tutorial" class="external">UG997<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Power Analysis and Optimization</td><td>Power estimates and optimization techniques.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug908-vivado-programming-debugging/Introduction" class="external">UG908<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug936-vivado-tutorial-programming-debugging/Debugging-in-Vivado-Tutorial" class="external">UG936<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Programming and Debugging</td><td>Using the integrated logic analyzer, virtual I/O, and others to debug the implemented hardware.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug909-vivado-partial-reconfiguration/Introduction" class="external">UG909<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug947-vivado-partial-reconfiguration-tutorial/Introduction" class="external">UG947<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Dynamic Function eXchange</td><td>Technique to implement a full bitstream of the design then use ‘partial’ bitstreams to reconfigure only parts of the design. The idea is you do not have to re-implement the other parts.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug994-vivado-ip-subsystems/Getting-Started-with-Vivado-IP-Integrator" class="external">UG994<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug995-vivado-ip-subsystems-tutorial/Designing-IP-Subsystems" class="external">UG995<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Designing IP Subsystems Using IP Integrator</td><td>More on combining IP with block diagrams.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1118-vivado-creating-packaging-custom-ip/Creating-and-Packaging-Custom-IP" class="external">UG1118<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1119-vivado-creating-packaging-ip-tutorial/Introduction-to-Creating-and-Packaging-Custom-IP" class="external">UG1119<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Creating and Packaging Custom IP</td><td>How to package synthesized designs as IP.</td></tr><tr><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td><td></td></tr></tbody></table></div>
+<h2 id="extras">Extras<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#extras" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Other user guides that are mostly optional. You can get away with not knowing the information here, but they are useful for more intricate usage.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug894-vivado-tcl-scripting/Tcl-Scripting-in-Vivado" class="external">UG894<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Tcl Scripting</td><td>Extensive details on how to use Tcl to control the design flow.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/v/u/en-US/ug1037-vivado-axi-reference-guide" class="external">UG1037<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>AXI Reference Guide</td><td>Details about using AXI with IP and custom designs. Generally a good resource.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug949-vivado-design-methodology/Introduction" class="external">UG949<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>UltraFast Design Methodology</td><td>Xilinx’s recommended design process for FPGAs and MPSoCs.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug899-vivado-io-clock-planning/Introduction" class="external">UG899<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>IO and Clock Planning</td><td>Talks about the board connection between FPGA and PCB, like pinout locations. Not entirely relevant to internal clock/timing.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1556-power-design-manager/Introduction" class="external">UG1556<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Power Design Manager</td><td></td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug440-xilinx-power-estimator/Overview?tocId=0KXsD91Zu~slqAes_fj26w" class="external">UG440<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Xilinx Power Estimator</td><td></td></tr><tr><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td><td></td></tr></tbody></table></div>
+<h2 id="vivado-reference-manuals">Vivado Reference Manuals<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vivado-reference-manuals" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Reference manuals contain a wealth of unordered information that should really only be used after you know what the topic is about. Use them to quickly look up command arguments, properties, etc.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug912-vivado-properties/Vivado-Design-Suite-First-Class-Objects" class="external">UG912<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Properties Reference Guide</td><td>Details about Vivado objects such as PORT, NET, IOB, etc.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug835-vivado-tcl-commands/Introduction" class="external">UG835<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Tcl Command Reference Guide</td><td>All Tcl commands and what they do.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/v/u/en-US/ug1292-ultrafast-timing-closure-quick-reference" class="external">UG1292<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>UltraFast Design Methodology Timing Closure Quick Reference Guide</td><td>10 Pages that summarize steps to close timing.</td></tr></tbody></table></div>
+<hr/>
+<h1 id="vitis">Vitis<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vitis" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>Vitis is a Vivado companion tool that has two main functions: to program embedded designs and to perform High Level Synthesis (HLS). For embedded designs, if the FPGA board contains hard logic, like the Zynq series which have various “CPU”s, then Vitis can be used to program them. This relates to the Processing System (PS) side of the FPGA. For HLS, Vitis can be used to convert C/C++/other code to a hardware implementation. Essentially, it translates high level algorithms it into RTL. This relates to the Programming Logic (PL) side of the FPGA.</p>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Info</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>In addition to the official <a href="https://docs.amd.com/p/design-hubs" class="external">Design Hubs Landing Page<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>, Vitis has its own landing page <a href="https://docs.amd.com/v/u/en-US/ug1416-vitis-documentation" class="external">UG1416<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>. The main Design Hubs Landing Page has links to the Vitis user guides, but does not seem to link to the tutorials. This is the main difference, aside from a pretty interface.</p>
+</div>
+</blockquote>
+<h2 id="vitis-user-guides">Vitis User Guides<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vitis-user-guides" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Vitis user guides give instructions on how to use the various features in Vitis. It is recommended to run through the useful ones at least once to become familiar with the process. Unlike Vivado user guides, there does not seem to be a one-to-one mapping of user guides to tutorials. Instead, the tutorials are all stacked into pages according to the target application, which makes them a bit unwieldy to read.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1742-vitis-release-notes/Vitis-Release-Notes" class="external">UG1742<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Vitis Release Notes</td><td>Release notes and installation process.</td></tr><tr><td style="text-align:center;">❌</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1700-vitis-accelerated-data-center/Getting-Started-with-Vitis" class="external">UG1700<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Data Center Acceleration</td><td>Focuses on using Vitis for data center applications on AMD Alveo Accelerator Cards.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1393-vitis-application-acceleration/Getting-Started-with-Vitis" class="external">UG1393<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Application Acceleration Development (deprecated)</td><td>General introduction to Vitis.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1701-vitis-accelerated-embedded/Getting-Started-with-Vitis-Unified-Software-Platform" class="external">UG1701<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Embedded Design Development with Vitis</td><td>Categorized as embedded development but applies to general Vitis use alongside Vivado.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1399-vitis-hls/Introduction" class="external">UG1399<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>High-Level Synthesis</td><td>General introduction to Vitis HLS.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1400-vitis-embedded/Getting-Started-with-Vitis" class="external">UG1400<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Embedded Software Development</td><td>Details about compiler for embedded designs. Talks about something called Vitis classic, not sure what that’s about.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1483-model-composer-sys-gen-user-guide/Overview" class="external">UG1483<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Model Composer</td><td>General introduction to Vitis Model Composer, which allows you to use Matlab/Simulink to create PL logic.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1076-ai-engine-environment/Overview" class="external">UG1076<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>AI Engine Tools and Flows</td><td></td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1079-ai-engine-kernel-coding/Overview?tocId=_G~tNVucqwC0CCt0l_v6bA" class="external">UG1079<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>AI Engine Kernel and Graph Programming Guide</td><td></td></tr><tr><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td><td></td></tr></tbody></table></div>
+<h2 id="vitis-tutorials">Vitis Tutorials<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vitis-tutorials" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Vitis tutorials have step-by-step labs that guide you through toy designs to demonstrate parts of the design flow. Recommended to run through them after reading the user guide. Interestingly the Vitis tutorials have their own landing page, which is seperate from the main Vitis landing page: <a href="https://docs.amd.com/v/u/en-US/UG1605-vitis-tutorials" class="external">UG1605 - Vitis Tutorials Landing Page<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Honestly just follow this <a href="https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1" class="external">https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p></div>
+                  
+                </div>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/Vitis-Tutorials-Getting-Started/Vitis-Tutorials-Getting-Started-XD098" class="external">XD098<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Getting Started</td><td>Vitis getting started tutorials. Has a tutorial for running an HLS design alongside a host system, a tutorial for HLS, Vitis Libraries, and Platforms.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/Vitis-Tutorials-Vitis-Hardware-Acceleration" class="external">XD099<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Hardware Acceleration</td><td>Tutorials for hardware acceleration.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/Vitis-Tutorials-Vitis-Platform-Creation/Vitis-Tutorials-Vitis-Platform-Creation-XD101" class="external">XD101<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Platform Creation</td><td>Tutorials for creating <a href="../01-Core-Content/Xilinx-Terminology#platform" class="internal alias" data-slug="01-Core-Content/Xilinx-Terminology">platforms</a> for various boards.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/Vitis-Tutorials-AI-Engine-Development/Vitis-Tutorials-AI-Engine-Development-XD100" class="external">XD100<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>AI Engine Development</td><td></td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;">-</td><td><a href="https://github.com/Xilinx/Vitis-AI-Tutorials" class="external">Machine Learning<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>A Github page of tutorials on AI and machine learning.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/Vitis-Tutorials-Embedded-Software/Vitis-Tutorials-Embedded-Software-XD260" class="external">XD260<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Embedded Software Tutorials</td><td>A series of tutorials on using Vitis, including “Hello World”.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/Vitis-Tutorials-Vitis-HLS/Vitis-Tutorials-Vitis-HLS-XD261" class="external">XD261<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Vitis HLS</td><td>Tutorials on Vitis HLS.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"></td><td><a href="https://github.com/Xilinx/Vitis-HLS-Introductory-Examples" class="external">Vitis HLS Introductory Examples<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Tutorials on Vitis HLS.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"></td><td><a href="https://github.com/Xilinx/Vitis_Accel_Examples" class="external">Vitis Data Center Examples<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Examples for Vitis Data Center Acceleration.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/v/u/en-US/ug1732-vitis-embedded-design-tutorials" class="external">UG1732<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Embedded Design Tutorials Landing Page</td><td>For some reason the embedded designs have their <em>own</em> landing page. There are specific tutorials towards Versal, Zynq UltraScale+ and Zynq 7000.</td></tr><tr><td style="text-align:center;"></td><td style="text-align:center;">-</td><td><a href="https://github.com/Xilinx/Vitis_Model_Composer" class="external">Model Composer<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>A Github page of Matlab/Model Composer tutorials.</td></tr></tbody></table></div>
+<h2 id="references">References<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#references" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Reference manuals contain a wealth of unordered information that should really only be used after you know what the topic is about. Use them to quickly look up command arguments, properties, etc.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1702-vitis-accelerated-reference/Navigating-Content-by-Design-Process" class="external">UG1702<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Vitis Reference Guide</td><td>Listing of Vitis commands.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;">-</td><td><a href="https://docs.amd.com/r/en-US/Vitis_Libraries/index.html" class="external">Vitis Libraries<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Listing of Vitis open-source libraries for hardware acceleration.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1283-bootgen-user-guide/Introduction" class="external">UG1283<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Bootgen User Guide</td><td>Steps to install and use Bootgen, an AMD tool that is used to stitch multiple binary files together to generate a device boot image.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;">-</td><td><a href="https://xilinx.github.io/XRT/2024.2/html/index.html" class="external">Xilinx Runtime Library (XRT)<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>A Github page for the Xilinx Runtime Library.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/r/2024.1-English/ug1448-hls-guidance/UG1448-Referable-Content" class="external">UG1448<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Vitis HLS Messaging</td><td>Vitis HLS error and warning messages.</td></tr></tbody></table></div>
+<h2 id="petalinux">PetaLinux<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#petalinux" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>PetaLinux is a light Linux image based on Yocto that has official support for use on Zynq based boards. In short, you can run Linux on the PS side, and have it interact with your custom programmable logic.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1144-petalinux-tools-reference-guide/Overview" class="external">UG1144<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>PetaLinux Reference Guide</td><td>Guide to installing PetaLinux + some configurations.</td></tr></tbody></table></div>
+<h2 id="microblaze-processor">MicroBlaze Processor<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#microblaze-processor" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>For Xilinx FPGAs (Spartan, Artix, Kintex, Virtex), there is not hard-logic processor like there is on Zynq. Instead, a soft-core processor called the MicroBlaze can be programmed into the FPGA fabric if desired.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug1579-microblaze-embedded-design/Introduction" class="external">UG1579<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>MicroBlaze Processor Embedded Design User Guide</td><td>General introduction to using the MicroBlaze processor.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="https://docs.amd.com/r/en-US/ug984-vivado-microblaze-ref/Introduction?tocId=kapC3do5RYcn10xvXtz0Ig" class="external">UG984<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>MicroBlaze Processor Reference Guide</td><td>A more detailed guide to using the MicroBlaze processor.</td></tr></tbody></table></div>
+<h2 id="outdated--but-potentially-useful">Outdated (?) but potentially useful<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#outdated--but-potentially-useful" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>These have not been updated for several years, but some updated user guides still point to them. The information <em>may</em> be relevant.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">User Guide</th><th>Title</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/v/u/2019.1-English/ug940-vivado-tutorial-embedded-design" class="external">UG940<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Embedded Processor Hardware Design Tutorial</td><td>A tutorial from 2019 that focused on using a Zynq-7000.</td></tr><tr><td style="text-align:center;">🤔</td><td style="text-align:center;"><a href="https://docs.amd.com/v/u/en-US/ug1046-ultrafast-design-methodology-guide" class="external">UG1046<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>UltraFast Embedded Design Methodology Guide</td><td>A guide from 2018 that was the UltraFast methodology equivalent for embedded designs.</td></tr></tbody></table></div>
+<hr/>
+<h1 id="board-specific-guides-and-tutorials">Board Specific Guides and Tutorials<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#board-specific-guides-and-tutorials" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>Since the information pages for particular boards/kits are not too unwieldy, this section links to the relevant pages directly.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Warning</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>When you click on any tutorial or guide, make sure the Vivado version matches your own! Some the the links within point to outdated revisions that will cause problems if you try to use them. Evidently some tutorials will be outdated, which means it will be difficult to follow them. In this case, it may not be possible to complete the tutorial without spending extra effort in figuring out how to accomplish the same objectives.</p>
+</div>
+</blockquote>
+<h2 id="7-series-based-boards">7-Series Based Boards<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-series-based-boards" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This includes Spartan, Artix, Kintex, Virtex based FPGAs.
+<a href="https://docs.amd.com/v/u/en-US/dh0030-artix-hub" class="external">Artix-7 Kits<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<a href="https://docs.amd.com/v/u/en-US/dh0031-kintex-hub" class="external">Kintex-7 Kits<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<a href="https://docs.amd.com/v/u/en-US/dh0032-virtex-hub" class="external">Virtex-7 Kits<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<a href="https://docs.amd.com/access/sources/dita/map?Doc_Version=2024.2%20English&amp;url=ug953-vivado-7series-libraries" class="external">Libraries Guide (UG953)<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<h2 id="zynq-based-boards">Zynq Based Boards<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#zynq-based-boards" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This includes Zynq-7000, Zynq UltraScale+ MPSoC, and Zynq UltraScale+ RFSoC based SoCs.</p>
+<p><a href="https://docs.amd.com/v/u/en-US/dh0036-zynq-ultrascale-plus-mpsoc-hub" class="external">Zynq UltraScale+ MPSoC Kit Information<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<a href="https://docs.amd.com/v/u/en-US/dh0070-zynq-mpsoc-design-overview-hub" class="external">Zynq UltraScale+ MPSoC Guides and Tutorials<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<a href="https://docs.amd.com/v/u/en-US/dh0072-zynq-mpsoc-boot-and-config-hub" class="external">Zynq UltraScale+ MPSoC Boot and Configuration Guides<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<a href="https://docs.amd.com/r/en-US/ug974-vivado-ultrascale-libraries/Introduction" class="external">UltraScale Architecture Libraries Guide (UG974)<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<p><a href="https://docs.amd.com/v/u/en-US/dh0033-zynq-7000-hub" class="external">Zynq-7000 Kits<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<p>ZCU102 specific</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">Useful</th><th style="text-align:center;">UG#</th><th>Web Link</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center;">✅</td><td style="text-align:center;">-</td><td><a href="https://www.xilinx.com/support/documents/boards_and_kits/zcu102/xtp426-zcu102-quickstart.pdf" class="external">Quick Start Guide<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>4 pages, how to run BIST.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;">UG574</td><td><a href="https://docs.amd.com/r/en-US/ug574-ultrascale-clb?tocId=2DOfkt0abl3oJAYunYLu0A" class="external">UltraScale Configurable Logic Block (CLB) User Guide<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Details the CLB blocks used in the UltraScale and UltraScale+ family.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;">UG1182</td><td><a href="https://docs.amd.com/v/u/en-US/ug1182-zcu102-eval-bd" class="external">User Guide<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>General information about board components, jumper switch settings, configuration. More like a reference guide than a user guide.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;"><a href="../UG1209" class="internal" data-slug="UG1209">UG1209</a></td><td><a href="https://docs.amd.com/r/en-US/ug1209-embedded-design-tutorial/Zynq-UltraScale-MPSoC-Embedded-Design-Tutorial-UG1209" class="external">Zynq UltraScale+ MPSoC Embedded Design Tutorial<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Programming System (PS) “Hello World” tutorial. Also has labs on creating a Linux image with PetaLinux. Exclusively uses the PS side, no FPGA implementation.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;">UG1221</td><td><a href="https://docs.amd.com/v/u/en-US/ug1221-zcu102-base-trd" class="external">Targeted Reference Design<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a><br/><a href="https://www.xilinx.com/support/documents/boards_and_kits/zcu102/2020_2/rdf0422-zcu102-base-trd-2019-1-tpl-sources.zip" class="external">Sources files 1<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a><br/><a href="https://www.xilinx.com/member/forms/download/design-license-xef.html?filename=rdf0421-zcu102-base-trd-2021-1.zip" class="external">Sources files 2<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Details for an embedded video processing application that uses PS and PL.</td></tr><tr><td style="text-align:center;">✅</td><td style="text-align:center;">UG1085</td><td><a href="https://docs.amd.com/v/u/en-US/ug1085-zynq-ultrascale-trm" class="external">Zynq UltraScale+ Device Reference Manual<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>Details for every single component on the Zynq MPSoC</td></tr><tr><td style="text-align:center;"></td><td style="text-align:center;">UG1137</td><td><a href="https://docs.amd.com/r/en-US/ug1137-zynq-ultrascale-mpsoc-swdev/About-This-Guide" class="external">Zynq UltraScale+ MPSoC Software Developer Guide<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td></td></tr></tbody></table></div>
+<hr/>
+<h1 id="continuing">Continuing<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#continuing" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>The guides and tutorial that have been detailed on this page are curated from Xilinx’s design hub lists. Obviously guides from previous Vivado versions which have been abandoned would not be included. However, you can still find a complete list of user guides, regardless of their last update, on the official <a href="https://docs.amd.com/search/all?content-lang=en-US" class="external">information portal<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>. Simply search for a term and you will be overwhelmed with choice.</p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="toc desktop-only"><button type="button" id="toc" class aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content" class><ul class="overflow"><li class="depth-0"><a href="#installation-steps" data-for="installation-steps">Installation Steps</a></li><li class="depth-0"><a href="#guides" data-for="guides">Guides</a></li><li class="depth-0"><a href="#vivado" data-for="vivado">Vivado</a></li><li class="depth-1"><a href="#vivado-user-guides-and-tutorials" data-for="vivado-user-guides-and-tutorials">Vivado User Guides and Tutorials</a></li><li class="depth-1"><a href="#extras" data-for="extras">Extras</a></li><li class="depth-1"><a href="#vivado-reference-manuals" data-for="vivado-reference-manuals">Vivado Reference Manuals</a></li><li class="depth-0"><a href="#vitis" data-for="vitis">Vitis</a></li><li class="depth-1"><a href="#vitis-user-guides" data-for="vitis-user-guides">Vitis User Guides</a></li><li class="depth-1"><a href="#vitis-tutorials" data-for="vitis-tutorials">Vitis Tutorials</a></li><li class="depth-1"><a href="#references" data-for="references">References</a></li><li class="depth-1"><a href="#petalinux" data-for="petalinux">PetaLinux</a></li><li class="depth-1"><a href="#microblaze-processor" data-for="microblaze-processor">MicroBlaze Processor</a></li><li class="depth-1"><a href="#outdated--but-potentially-useful" data-for="outdated--but-potentially-useful">Outdated (?) but potentially useful</a></li><li class="depth-0"><a href="#board-specific-guides-and-tutorials" data-for="board-specific-guides-and-tutorials">Board Specific Guides and Tutorials</a></li><li class="depth-1"><a href="#7-series-based-boards" data-for="7-series-based-boards">7-Series Based Boards</a></li><li class="depth-1"><a href="#zynq-based-boards" data-for="zynq-based-boards">Zynq Based Boards</a></li><li class="depth-0"><a href="#continuing" data-for="continuing">Continuing</a></li></ul></div></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.4.0</a> © 2026</p><ul></ul></footer></div></div></body><script type="application/javascript">function c(){let t=this.parentElement;t.classList.toggle("is-collapsed");let l=t.classList.contains("is-collapsed")?this.scrollHeight:t.scrollHeight;t.style.maxHeight=l+"px";let o=t,e=t.parentElement;for(;e;){if(!e.classList.contains("callout"))return;let n=e.classList.contains("is-collapsed")?e.scrollHeight:e.scrollHeight+o.scrollHeight;e.style.maxHeight=n+"px",o=e,e=e.parentElement}}function i(){let t=document.getElementsByClassName("callout is-collapsible");for(let s of t){let l=s.firstElementChild;if(l){l.addEventListener("click",c),window.addCleanup(()=>l.removeEventListener("click",c));let e=s.classList.contains("is-collapsed")?l.scrollHeight:s.scrollHeight;s.style.maxHeight=e+"px"}}}document.addEventListener("nav",i);window.addEventListener("resize",i);
+</script><script type="module">
+          let mermaidImport = undefined
+          document.addEventListener('nav', async () => {
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
+          });
+          </script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>

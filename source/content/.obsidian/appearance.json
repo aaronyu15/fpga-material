@@ -1,1 +1,7 @@
-{}
+{
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "style"
+  ],
+  "cssTheme": "Minimal"
+}

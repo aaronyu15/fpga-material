@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Makefile</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="Makefile"/><meta property="og:description" content="A Comprehensive Guide to Makefile Syntax and Usage Make is a powerful build automation tool that automatically builds executable programs and libraries from source code by reading ..."/><meta property="og:image" content="https://aaronyu15.github.io/fpga-material//static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="A Comprehensive Guide to Makefile Syntax and Usage Make is a powerful build automation tool that automatically builds executable programs and libraries from source code by reading ..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="Syntax/Makefile"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">FPGA Resources</a></h2><div class="spacer mobile-only"></div><div class="search"><button class="search-button" id="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="search-layout" data-preview="true"></div></div></div></div><button class="darkmode" id="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;01-Core-Content&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Others&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Syntax&quot;,&quot;collapsed&quot;:true}]" aria-controls="explorer-content" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="01-Core-Content"><button class="folder-button"><span class="folder-title">01 Core Content</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="01-Core-Content"><li><a href="../01-Core-Content/FPGAs,-SoCs,-and-Development-Boards" data-for="01-Core-Content/FPGAs,-SoCs,-and-Development-Boards">FPGAs, SoCs, and Development Boards</a></li><li><a href="../01-Core-Content/PetaLinux-Quick-Tutorial" data-for="01-Core-Content/PetaLinux-Quick-Tutorial">PetaLinux Quick Tutorial</a></li><li><a href="../01-Core-Content/Vitis-Quick-Tutorial" data-for="01-Core-Content/Vitis-Quick-Tutorial">Vitis Quick Tutorial</a></li><li><a href="../01-Core-Content/Vivado-Quick-Tutorial" data-for="01-Core-Content/Vivado-Quick-Tutorial">Vivado Quick Tutorial</a></li><li><a href="../01-Core-Content/Xilinx-Docs" data-for="01-Core-Content/Xilinx-Docs">Xilinx Docs</a></li><li><a href="../01-Core-Content/Xilinx-Terminology" data-for="01-Core-Content/Xilinx-Terminology">Xilinx Terminology</a></li></ul></div></li><li><div class="folder-outer "><ul style="padding-left:0;" class="content" data-folderul></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Others"><button class="folder-button"><span class="folder-title">Others</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Others"><li><a href="../Others/Git-Command-Line" data-for="Others/Git-Command-Line">Git Command Line</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Syntax"><button class="folder-button"><span class="folder-title">Syntax</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Syntax"><li><a href="../Syntax/Bash" data-for="Syntax/Bash">Bash</a></li><li><a href="../Syntax/LaTeX" data-for="Syntax/LaTeX">LaTeX</a></li><li><a href="../Syntax/Makefile" data-for="Syntax/Makefile">Makefile</a></li><li><a href="../Syntax/Tcl" data-for="Syntax/Tcl">Tcl</a></li></ul></div></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../Syntax/">Syntax</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Makefile</a></div></nav><h1 class="article-title">Makefile</h1><p show-comma="true" class="content-meta"><span>Apr 08, 2026</span><span>13 min read</span></p></div></div><article class="popover-hint"><p>A Comprehensive Guide to Makefile Syntax and Usage</p>
+<p>Make is a powerful build automation tool that automatically builds executable programs and libraries from source code by reading files called Makefiles. A Makefile specifies how to compile and link a program, and it tracks dependencies to avoid unnecessary recompilation, saving significant time.</p>
+<ol>
+<li>The Core Components of a Makefile
+A Makefile consists of a set of rules. Each rule defines how to create a file, known as the target.</li>
+</ol>
+<p>A rule has three main parts:</p>
+<ul>
+<li>Target: The file to be created. Usually an object file (.o) or an executable.</li>
+<li>Prerequisites (or Dependencies): A list of files that the target depends on. These files must exist before the recipe is run.</li>
+<li>Recipe: The command(s) to be executed to create the target. <del>={yellow}Each line in a recipe must begin with a TAB character.=</del> This is a strict requirement and a common source of errors.</li>
+</ul>
+<p>Basic Rule Syntax</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="Makefile" data-theme="github-light github-dark"><code data-language="Makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>target: prerequisite1 prerequisite2</span></span>
+<span data-line><span>&lt;TAB>recipe</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># This is a comment</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hello</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: hello.c</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">	gcc -o hello hello.c</span></span></code></pre></figure>
+<p>Target: <code>hello</code>
+Prerequisite: <code>hello.c</code>
+Recipe: <code>gcc -o hello hello.c</code></p>
+<p>To run this, you would simply type <code>make</code> in your terminal. <code>make</code> will look for a file named <code>Makefile</code> and execute the first target by default. It sees that <code>hello</code> depends on <code>hello.c</code>. If <code>hello.c</code> is newer than <code>hello</code> (or if <code>hello</code> doesn’t exist), it will run the <code>gcc</code> command.</p>
+<ol start="2">
+<li>Variables (Macros)
+Variables in Makefiles (often called macros) are used to store strings, making your Makefile more flexible and easier to maintain.</li>
+</ol>
+<p>Defining and Using Variables
+Variable names are traditionally uppercase. You define them with = and access them with <code>$(VAR_NAME)</code> or <code>${VAR_NAME}</code>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC = gcc</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS = -Wall -g</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET = my_program</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: main.o utils.o</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> main.o utils.o</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">main.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: main.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c main.c</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">utils.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: utils.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c utils.c</span></span></code></pre></figure>
+<p>This is much cleaner. If you want to change the compiler or add a compiler flag, you only need to change it in one place.
+Variables can be assigned using one of the four operators:</p>
+<ul>
+<li><code>=</code> Recursive/Deferred expansion. Right hand side is only expanded when the variable is used somewhere. Can lead to infinite loops or unexpected behaviour.</li>
+<li><code>:=</code> Simple/Immediate expansion. Safest and most used, right side is expanded at point of variable definition.</li>
+<li><code>?=</code> Conditional assignment, assigns a value to a variable only if the variable has not already been set</li>
+<li><code>+=</code> Appending, adds the right hand side as a string to the variable’s existing value, separated by a space.</li>
+</ul>
+<ol start="3">
+<li>Automatic Variables
+<code>make</code> provides several “automatic variables” that are extremely useful within recipes. They are automatically set based on the target and prerequisites of the rule being executed.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">The target name.</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">The name of the first prerequisite.</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$^</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">The names of all prerequisites, separated by spaces.</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$?</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">The names of all prerequisites that are newer than the target.</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">*</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">The stem with which an implicit rule matched.</span></span></code></pre></figure>
+<p>Example with Automatic Variables
+The previous example can be made much more concise:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC = gcc</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS = -Wall -g</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET = my_program</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS = main.o utils.o</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $^</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">main.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: main.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">utils.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: utils.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span></span></code></pre></figure>
+<ol start="4">
+<li>Pattern Rules
+Pattern rules are a way to define rules for a whole class of files. They use the wildcard character %. The % acts as a placeholder that can match any non-empty substring.</li>
+</ol>
+<p>Example: A Generic Rule for .o Files
+Instead of writing a separate rule for main.o and utils.o, we can write a single pattern rule:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span></code></pre></figure>
+<p>This rule tells make how to create any .o file from its corresponding .c file. For example, to make main.o, make sees it needs main.c and applies this rule.</p>
+<p>Now our full Makefile is much shorter:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC = gcc</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS = -Wall -g</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET = my_program</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES = main.c utils.c</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES:.c=.o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Replaces .c with .o</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $^</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span></code></pre></figure>
+<ol start="5">
+<li>Phony Targets
+A phony target is one that does not represent an actual file. Instead, it’s just a name for a recipe to be executed. Common phony targets include all, clean, and install.</li>
+</ol>
+<p>It’s good practice to explicitly declare phony targets using the .PHONY special target. This prevents conflicts with files of the same name and improves performance.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># ... (previous definitions)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">.PHONY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: all clean</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">all</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">clean</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">	rm -f </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span></code></pre></figure>
+<p><code>make all</code>: This will build my_program. Since it’s the first non-special target, just running make would do the same.
+<code>make clean</code>: This will execute the rm command to remove all compiled object files and the final executable, cleaning up the directory.</p>
+<ol start="6">
+<li>Functions
+Makefiles have a set of built-in functions that you can call. The syntax is <code>$(function arguments)</code>.</li>
+</ol>
+<p>Useful Functions</p>
+<ul>
+<li><code>$(wildcard PATTERN)</code>: Finds all files matching a pattern. For example, <code>$(wildcard *.c)</code> will return a list of all <code>.c</code> files in the current directory.</li>
+<li><code>$(patsubst PATTERN, REPLACEMENT, TEXT)</code>: Pattern substitution. For example, <code>$(patsubst %.c, %.o, main.c utils.c)</code> returns <code>main.o utils.o</code>.</li>
+<li><code>$(shell command)</code>: Executes a shell command and returns its standard output. Example: <code>KERNEL_VERSION := $(shell uname -r)</code>.</li>
+<li><code>$(foreach var, list, text)</code>: Take each word in <code>list</code>, assign it to <code>var</code>, and then expand <code>text</code>. Example: <code>CFLAGS += $(foreach dir, $(DIRS), -I$(dir))</code> expands to <code>CFLAGS += -Isrc -Iinclude -Iutils</code>.</li>
+<li><code>$(if condition, then-part[, else-part])</code>: if <code>condition</code> is a non-empty string, expand to <code>then-part</code>, else expand to <code>else-part</code>. Example: <code>LIBS := $(if $(findstring Linux,$(UNAME_S)), -lrt)</code>, this expands to <code>LIBS := -lrt</code> if the string is found.</li>
+<li><code>$(info Text)</code>: Prints <code>Text</code> to output during parsing. This can be put directly under the variable declaration (so not in a recipe) so it’s useful for debugging variables.</li>
+</ul>
+<pre><code>Example with wildcard
+This is the most robust way to handle source files, as you don't need to manually update the SOURCES variable.
+
+```makefile
+SOURCES := $(wildcard *.c)
+OBJECTS := $(patsubst %.c,%.o,$(SOURCES))
+
+# ... rest of the Makefile
+</code></pre>
+<p>Note the use of := (immediate assignment) instead of =. This is important when using wildcard, as it evaluates the function immediately instead of deferring it.</p>
+<p>Custom functions can be made using the <code>define</code> directive, and then invoked using the <code>call</code> function.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Define a function that checks if a file exists and prints a message.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># $1 refers to the first argument passed to 'call'.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">define</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> CheckExists</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">  $(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">if</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">wildcard</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $1</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">),,$(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">error</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> File '</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$1</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">' does not exist))</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">endef</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Now, use the function</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># This will cause 'make' to exit with an error if config.h is missing.</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">call</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> CheckExists, config.h)</span></span></code></pre></figure>
+<ol start="7">
+<li>Conditional Statements
+You can have parts of your Makefile be conditional.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">ifeq</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">DEBUG</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, 1)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">	CFLAGS += -g</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">else</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">	CFLAGS += -O2</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">endif</span></span></code></pre></figure>
+<p>You could then run <code>make DEBUG=1</code> to compile with debugging symbols.</p>
+<p>A Complete Example
+Here is a complete, robust Makefile that combines these concepts.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Compiler and flags</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC := gcc</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Use -Wall for warnings, -g for debugging. Add -O2 for optimization in release builds.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS := -Wall -g</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Automatically find all .c files in the current directory</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES := </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">wildcard</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> *</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">.c)</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Infer object files from source files</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS := </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">patsubst</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> %</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">.c,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">.o,$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">))</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Set the name of the final executable</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET := my_app</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The 'all' target is the default. It depends on the final executable.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Declaring it as .PHONY means 'make' won't look for a file named 'all'.</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">.PHONY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: all</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">all</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Rule to link the final executable.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># It depends on all the object files.</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Linking...&quot;</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $^</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Generic pattern rule to compile .c files into .o files.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># For each .c file, this rule is triggered to create the corresponding .o file.</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.c</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Compiling </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">...&quot;</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The 'clean' target removes all build artifacts.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Declared as .PHONY because there is no file named 'clean'.</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">.PHONY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: clean</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">clean</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Cleaning up...&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">	rm -f </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span></code></pre></figure>
+<p>This guide provides a solid foundation for using Makefiles. By leveraging variables, pattern rules, and phony targets, you can create flexible and efficient build systems for projects of any size.</p>
+<p>Other tips:</p>
+<ul>
+<li>
+<p>Prepending a command with <code>@</code> will prevent <code>make</code> from printing the command when it runs. Cleaner output.</p>
+</li>
+<li>
+<p>Use <code>$(MAKE)</code> for recursive Makefile calls. Add flag <code>-C &lt;directory></code> to specify a different directory.</p>
+</li>
+<li>
+<p>Supported wildcard characters: <code>*</code> matches any sequence of zero or more characters. <code>?</code> Matches any single character. <code>[...]</code> Matches characters enclosed in brackets, can include <code>[a-z]</code>, <code>[0-9]</code>. Use <code>!</code> to negate class, example: <code>[!0-9]</code>.</p>
+</li>
+<li>
+<p>Include other makefiles using <code>include &lt;name></code>.</p>
+</li>
+<li>
+<p>Use <code>export VARIABLE_NAME</code> to allow variables to be used in sub-scripts (such as in tcl. By default sub-makes have all defines variables).</p>
+</li>
+<li>
+<p>“Substitution reference” syntax, used to create new list of strings based on existing ones. Used as <code>$(VARIABLE:suffix=replacement)</code>, for example <code>$(OBJECTS:.c=.o)</code> to get a list of <code>.o</code> files from <code>.c</code> files.</p>
+</li>
+<li>
+<p>It’s possible to define a variable specifically for a single target:</p>
+</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS := -O2 -Wall</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># For the 'bad_file.o' target ONLY, override CFLAGS</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">bad_file.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: CFLAGS := -O0 -Wall</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># This file will be compiled with -O0</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">bad_file.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: bad_file.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># All other files will be compiled with the global -O2</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">.o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.c</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">	$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span></code></pre></figure>
+<h1 id="common-patterns">Common Patterns<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#common-patterns" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<ol>
+<li>The Standard Makefile for a C/C++ Project
+This is a complete, robust template for a basic project. It uses best practices for variables and includes essential phony targets.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># -----------------------------------------------------------------------------</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># A standard Makefile for a C/C++ project.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Author: Your Name</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Project: Your Project Name</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Usage:</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   make        - Compiles the project.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   make clean  - Removes all build artifacts.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   make rebuild- Rebuilds the project from scratch.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># -----------------------------------------------------------------------------</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Compiler and Linker ---</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC := gcc </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Use g++ for C++</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Compiler Flags ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># -Wall: Enable all standard warnings.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># -g:    Generate debugging information.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># -O2:   Optimization level 2 (for release builds).</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Use 'make CFLAGS=&quot;-g -O0&quot;' for a debug build.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS ?= -Wall -O2</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Project Structure ---</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET    := my_app</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SRC_DIR   := src</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR := build</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Automatic File Discovery ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Find all .c files in the source directory.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES := </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">wildcard</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SRC_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">.c)</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Infer object file names from source files, placing them in the build directory.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS := </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">patsubst</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SRC_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">.c,$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">%</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">.o,$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">))</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Phony Targets ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># These targets do not represent files.</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">.PHONY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: all clean rebuild</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Default Target ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The 'all' target is the default. 'make' is equivalent to 'make all'.</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">all</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">/</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Rule to Link the Final Executable ---</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">/</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Linking executable...&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $^</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Pattern Rule to Compile Source Files ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># This rule tells make how to create a .o file in the build directory</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># from a corresponding .c file in the source directory.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The '| $(BUILD_DIR)' is an &quot;order-only prerequisite&quot; to ensure the build directory exists.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The | symbol is used to ensure that the right-hand target exists, but does not check its timestamp for modifications. This means if $(BUILD_DIR) changes because</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># a file was added, it won't recompile %.o unless %.c changes.</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">/%.o: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SRC_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">/%.c | </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Compiling </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">...&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CC</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -o </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Rule to Create the Build Directory ---</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">mkdir -p </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$@</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Housekeeping Targets ---</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">clean</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Cleaning up...&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">rm -rf </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">rebuild</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: clean all</span></span></code></pre></figure>
+<ol start="2">
+<li>Automatic Header Dependency Generation
+This is a critical recipe for correctness. It ensures that if you change a header file, only the source files that actually include it will be recompiled.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Flags for Dependency Generation ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># -MMD: Generate a .d (dependency) file for each source file.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># -MP:  Create phony targets for headers to prevent errors if a header is deleted.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS += -MMD -MP</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Include Generated Dependencies ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Include all the .d files. The leading '-' tells make to ignore errors</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># if the file doesn't exist (e.g., on the first run or after a 'clean').</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">-include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">OBJECTS:.o=.d</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Update the 'clean' target ---</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">clean</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Cleaning up...&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">	# Also remove the dependency files</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">rm -rf </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span></code></pre></figure>
+<ol start="3">
+<li>Build Flavors (Debug vs. Release)
+This pattern allows you to easily switch between build configurations from the command line.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Default build type</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_TYPE ?= release</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Common flags for all build types</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS := -Wall -MMD -MP</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Add flags specific to the build type</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">ifeq</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_TYPE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, debug)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    CFLAGS += -g -O0</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    @echo &quot;Building in DEBUG mode.&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">else</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    CFLAGS += -O2</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    @echo &quot;Building in RELEASE mode.&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">endif</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Usage ---</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># make                # Compiles a release build</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># make BUILD_TYPE=debug # Compiles a debug build</span></span></code></pre></figure>
+<ol start="4">
+<li>Self-Documenting Makefile
+This recipe creates a help target that automatically parses comments from the Makefile itself to generate a help menu. This ensures your documentation is always in sync with your targets.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># It's conventional to make 'help' the first target so it's the default.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Note: Targets for documentation must have '##' comments.</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">.PHONY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: help</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">help</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">grep -E '^[a-zA-Z_-]+:.*?## .*</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$$</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">' </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">MAKEFILE_LIST</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> | </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">\</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">	awk 'BEGIN {FS = &quot;:.*?## &quot;}; {printf &quot;\033[36m%-20s\033[0m %s\n&quot;, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$$</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">1, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$$</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">2}'</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Example usage with other targets ---</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">all</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">/</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">TARGET</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> ## Compile the entire project.</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">clean</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">## Remove all build artifacts and dependency files.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Cleaning up...&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">rm -rf </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">BUILD_DIR</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">rebuild</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: clean all </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">## Rebuild the project from scratch.</span></span></code></pre></figure>
+<ol start="5">
+<li>Running a Linter or Formatter
+This template provides a target for running code quality tools across your entire source base.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="makefile" data-theme="github-light github-dark"><code data-language="makefile" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Tool Definitions ---</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">LINTER := clang-tidy</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">FORMATTER := clang-format</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">.PHONY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: lint format</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lint</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">## Run the static analyzer on all source files.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Running linter...&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">LINTER</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> $(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -- </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">CFLAGS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">format</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">## Automatically format all source files.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">echo &quot;Formatting source code...&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">	@</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">FORMATTER</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> -i </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">$(</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">SOURCES</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">)</span></span>
+<span data-line> </span></code></pre></figure>
+<h2 id="useful-flags">Useful Flags<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#useful-flags" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Job Control:</strong></p>
+<ul>
+<li><code>-j</code> or <code>-j&lt;N></code> - Run jobs in parallel. <code>-j</code> uses all available cores, <code>-j4</code> uses 4 cores</li>
+<li><code>-l&lt;N></code> - Don’t start new jobs if load average exceeds N</li>
+</ul>
+<p><strong>Debugging and Information:</strong></p>
+<ul>
+<li><code>-n</code> or <code>--dry-run</code> - Show what would be executed without actually running commands</li>
+<li><code>-p</code> - Print the database of rules and variables</li>
+<li><code>-v</code> or <code>--version</code> - Show make version</li>
+<li><code>-d</code> - Enable debugging output (same as <code>--debug=basic</code>)</li>
+<li><code>--debug[=FLAGS]</code> - More detailed debugging (<code>basic, verbose, implicit, jobs, makefile, all</code>)</li>
+</ul>
+<p><strong>File and Directory:</strong></p>
+<ul>
+<li><code>-f &lt;file></code> - Use specified makefile instead of default</li>
+<li><code>-C &lt;dir></code> - Change to directory before running make</li>
+<li><code>-I &lt;dir></code> - Include directory for searching makefiles</li>
+</ul>
+<p><strong>Execution Control:</strong></p>
+<ul>
+<li><code>-k</code> or <code>--keep-going</code> - Continue after errors in other targets</li>
+<li><code>-s</code> or <code>--silent</code> - Don’t print commands as they’re executed</li>
+<li><code>-i</code> or <code>--ignore-errors</code> - Ignore errors in commands</li>
+<li><code>-B</code> or <code>--always-make</code> - Force rebuild of all targets</li>
+<li><code>-t</code> or <code>--touch</code> - Touch targets instead of running commands</li>
+</ul>
+<p><strong>Variable Control:</strong></p>
+<ul>
+<li><code>-e</code> - Environment variables override makefile variables</li>
+<li><code>VAR=value</code> - Set variable (e.g., <code>make CC=clang</code>)</li>
+</ul>
+<p><strong>Common Usage Examples:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">make</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -j$(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">nproc</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">)</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">          # Parallel build using all cores</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">make</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -n</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">          # See what install would do</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">make</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -C</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> build</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> clean</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">      # Run clean target in build directory</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">make</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> custom.mk</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">        # Use custom makefile</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">make</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -k</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> test</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">            # Run tests, continue on failures</span></span></code></pre></figure>
+<p>The <code>-j</code> flag for parallel builds and <code>-n</code> for dry runs are probably the most commonly used in daily development work.</p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="toc desktop-only"><button type="button" id="toc" class aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content" class><ul class="overflow"><li class="depth-0"><a href="#common-patterns" data-for="common-patterns">Common Patterns</a></li><li class="depth-1"><a href="#useful-flags" data-for="useful-flags">Useful Flags</a></li></ul></div></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.4.0</a> © 2026</p><ul></ul></footer></div></div></body><script type="application/javascript">function c(){let t=this.parentElement;t.classList.toggle("is-collapsed");let l=t.classList.contains("is-collapsed")?this.scrollHeight:t.scrollHeight;t.style.maxHeight=l+"px";let o=t,e=t.parentElement;for(;e;){if(!e.classList.contains("callout"))return;let n=e.classList.contains("is-collapsed")?e.scrollHeight:e.scrollHeight+o.scrollHeight;e.style.maxHeight=n+"px",o=e,e=e.parentElement}}function i(){let t=document.getElementsByClassName("callout is-collapsible");for(let s of t){let l=s.firstElementChild;if(l){l.addEventListener("click",c),window.addCleanup(()=>l.removeEventListener("click",c));let e=s.classList.contains("is-collapsed")?l.scrollHeight:s.scrollHeight;s.style.maxHeight=e+"px"}}}document.addEventListener("nav",i);window.addEventListener("resize",i);
+</script><script type="module">
+          let mermaidImport = undefined
+          document.addEventListener('nav', async () => {
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
+          });
+          </script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>

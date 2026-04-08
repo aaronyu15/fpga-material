@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>PetaLinux Quick Tutorial</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="PetaLinux Quick Tutorial"/><meta property="og:description" content="UG1144 - PetaLinux Tools Documentation Create a new petalinux project: petalinux-create project [-s &amp;lt;path-to-bsp&amp;gt;] --name &amp;lt;project-name&amp;gt; --template [versal|zynqMP|zynq|microblaze] ..."/><meta property="og:image" content="https://aaronyu15.github.io/fpga-material//static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="UG1144 - PetaLinux Tools Documentation Create a new petalinux project: petalinux-create project [-s &amp;lt;path-to-bsp&amp;gt;] --name &amp;lt;project-name&amp;gt; --template [versal|zynqMP|zynq|microblaze] ..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="01-Core-Content/PetaLinux-Quick-Tutorial"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">FPGA Resources</a></h2><div class="spacer mobile-only"></div><div class="search"><button class="search-button" id="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="search-layout" data-preview="true"></div></div></div></div><button class="darkmode" id="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;01-Core-Content&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Others&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Syntax&quot;,&quot;collapsed&quot;:true}]" aria-controls="explorer-content" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="01-Core-Content"><button class="folder-button"><span class="folder-title">01 Core Content</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="01-Core-Content"><li><a href="../01-Core-Content/FPGAs,-SoCs,-and-Development-Boards" data-for="01-Core-Content/FPGAs,-SoCs,-and-Development-Boards">FPGAs, SoCs, and Development Boards</a></li><li><a href="../01-Core-Content/PetaLinux-Quick-Tutorial" data-for="01-Core-Content/PetaLinux-Quick-Tutorial">PetaLinux Quick Tutorial</a></li><li><a href="../01-Core-Content/Vitis-Quick-Tutorial" data-for="01-Core-Content/Vitis-Quick-Tutorial">Vitis Quick Tutorial</a></li><li><a href="../01-Core-Content/Vivado-Quick-Tutorial" data-for="01-Core-Content/Vivado-Quick-Tutorial">Vivado Quick Tutorial</a></li><li><a href="../01-Core-Content/Xilinx-Docs" data-for="01-Core-Content/Xilinx-Docs">Xilinx Docs</a></li><li><a href="../01-Core-Content/Xilinx-Terminology" data-for="01-Core-Content/Xilinx-Terminology">Xilinx Terminology</a></li></ul></div></li><li><div class="folder-outer "><ul style="padding-left:0;" class="content" data-folderul></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Others"><button class="folder-button"><span class="folder-title">Others</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Others"><li><a href="../Others/Git-Command-Line" data-for="Others/Git-Command-Line">Git Command Line</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Syntax"><button class="folder-button"><span class="folder-title">Syntax</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Syntax"><li><a href="../Syntax/Bash" data-for="Syntax/Bash">Bash</a></li><li><a href="../Syntax/LaTeX" data-for="Syntax/LaTeX">LaTeX</a></li><li><a href="../Syntax/Makefile" data-for="Syntax/Makefile">Makefile</a></li><li><a href="../Syntax/Tcl" data-for="Syntax/Tcl">Tcl</a></li></ul></div></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../01-Core-Content/">01 Core Content</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>PetaLinux Quick Tutorial</a></div></nav><h1 class="article-title">PetaLinux Quick Tutorial</h1><p show-comma="true" class="content-meta"><span>Apr 08, 2026</span><span>10 min read</span></p></div></div><article class="popover-hint"><p><a href="https://docs.amd.com/r/en-US/ug1144-petalinux-tools-reference-guide/Overview" class="external">UG1144 - PetaLinux Tools Documentation<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<p>Create a new petalinux project:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-create</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> project</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [-s </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">&lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">path-to-bs</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">p</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">]</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --name</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">project-nam</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --template</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [versal</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">zynqMP</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">zynq</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">microblaze]</span></span></code></pre></figure>
+<p>Import hardware description:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-config</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --get-hw-description</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">path-to-xs</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">></span></span></code></pre></figure>
+<p>Edit configurations:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-config</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [kernel</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">rootfs</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">u-boot</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">bootloader</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pmufw</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">device-tree]</span></span></code></pre></figure>
+<p>Build:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-build</span></span></code></pre></figure>
+<p>Generate boot image:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-package</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> boot</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --u-boot</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --fpga</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --force</span></span></code></pre></figure>
+<p>Create prebuilt directory:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-package</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> prebuilt</span></span></code></pre></figure>
+<p>Create BSP</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-package</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> bsp</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> .</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --output</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> MY.BSP</span></span></code></pre></figure>
+<p>Use QEMU emulator</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-boot</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> qemu</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --prebuilt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [2</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">3]</span></span></code></pre></figure>
+<p>Create WIC image</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-package</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> wic</span></span></code></pre></figure>
+<p>Create sysroot</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-build</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --sdk</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">petalinux-package</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> sysroot</span></span></code></pre></figure>
+<p>Flashing SD card</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> if=petalinux-sdimage.wic</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> of=/dev/sdX</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> bs=4M</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> status=progress</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> conv=fsync</span></span></code></pre></figure>
+<p>Steps to rebuild an application:</p>
+<h2 id="if-using-the-default-initrd-filesystem-mode">If using the default INITRD filesystem mode<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#if-using-the-default-initrd-filesystem-mode" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Clean and rebuild app</p>
+<pre><code>petalinux-build -c &lt;app> -x clean
+petalinux-build -c &lt;app>
+</code></pre>
+<p>Rebuild <code>image.ub</code>:</p>
+<pre><code>petalinux-build
+</code></pre>
+<p>Copy new <code>image.ub</code> into boot partition.</p>
+<h2 id="if-using-ext4">If using ext4<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#if-using-ext4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Clean and rebuild app</p>
+<pre><code>petalinux-build -c &lt;app> -x clean
+petalinux-build -c &lt;app>
+petalinux-build -c &lt;app> -x install
+</code></pre>
+<p>Look in directory <code>$PTLNX_DIR/build/tmp/work/cortexa72-cortexa53-xilinx-linux/&lt;app>/1.0-r0/</code> to copy the executable.</p>
+<h1 id="how-to-use-ext4-use-sd-card-partition-as-root-filesystem">How to use ext4 (use SD card partition as root filesystem)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#how-to-use-ext4-use-sd-card-partition-as-root-filesystem" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>In the petalinux project run</p>
+<pre><code>petalinux-config
+</code></pre>
+<p>and edit <code>Image Packaging Configuration > Root Filesystem Type</code> to ext4. Afterwards, add this <code>chosen</code> node to the <code>system-user.dtsi</code>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="dtsi" data-theme="github-light github-dark"><code data-language="dtsi" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>/ {</span></span>
+<span data-line><span>    chosen {</span></span>
+<span data-line><span>    	bootargs = &quot;earlycon console=ttyPS0,115200 clk_ignore_unused root=/dev/mmcblk0p2 rw rootwait cma=512M&quot;;</span></span>
+<span data-line><span>    };</span></span>
+<span data-line><span>};</span></span></code></pre></figure>
+<h1 id="sd-card-errors">SD card errors<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#sd-card-errors" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>If you get this error:</p>
+<pre><code>mmc0: error -84 while initialising SD card during the boot
+</code></pre>
+<p>or this error:</p>
+<pre><code>[    2.323385] mmc0: SDHCI controller on ff170000.mmc [ff170000.mmc] using ADMA 64-bit
+[    2.331244] Waiting for root device /dev/mmcblk0p2...
+[    2.367036] mmc0: new high speed SDXC card at address 59b4
+[    2.373031] mmcblk0: mmc0:59b4 MSSD0 117 GiB (ro)
+[    2.379332]  mmcblk0: p1 p2
+[    2.392182] EXT4-fs (mmcblk0p2): INFO: recovery required on readonly filesystem
+[    2.399496] EXT4-fs (mmcblk0p2): write access unavailable, cannot proceed (try mounting with noload)
+[    2.408793] VFS: Cannot open root device &quot;/dev/mmcblk0p2&quot; or unknown-block(179,2): error -30
+[    2.417234] Please append a correct &quot;root=&quot; boot option; here are the available partitions:
+</code></pre>
+<p>Then try editing <code>project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi</code> to lower the speed of the SD and allow write access.</p>
+<pre><code>/include/ &quot;system-conf.dtsi&quot;
+&amp;sdhci1 {
+    no-1-8-v;
+    disable-wp;
+};
+</code></pre>
+<h1 id="petalinux-build-flow-and-file-reference">PetaLinux Build Flow and File Reference<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#petalinux-build-flow-and-file-reference" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>From Vitis Platform Creation Tutorial XD101:</p>
+<p><img src="../attachments/Pasted-image-20251015093010.png" width="auto" height="auto" alt="center"/></p>
+<p>This document provides a comprehensive overview of the PetaLinux build process, detailing the various files involved, their purpose, how they are generated, and their final use in booting an embedded Linux system on Xilinx (now AMD) platforms like ZynqMP and Versal.</p>
+<h2 id="1-core-inputs--configurations">1. Core Inputs &amp; Configurations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-core-inputs--configurations" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>The PetaLinux build process starts with a set of foundational inputs and configurations:</p>
+<ul>
+<li>
+<p><strong>Hardware Design (XSA - Xilinx Support Archive):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> An archive file exported from Vivado Design Suite or Vitis. It contains the hardware definition for your specific ZynqMP/Versal system, including the Processing System (PS) configuration, Programmable Logic (PL) design (if any), memory map, and peripheral settings.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Information for FSBL, PMU Firmware, Device Tree, and U-Boot configurations.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>PetaLinux BSP (Board Support Package) / Project Configurations:</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> If starting from a BSP, it’s a <code>.bsp</code> file containing default configurations, patches, and metadata for a specific development board. If starting a new project, these are the configurations you set within your PetaLinux project (e.g., via <code>petalinux-config</code>).</p>
+</li>
+<li>
+<p><strong>Includes settings for:</strong></p>
+<ul>
+<li>
+<p>Kernel (features, drivers)</p>
+</li>
+<li>
+<p>U-Boot (features, environment variables)</p>
+</li>
+<li>
+<p>Root Filesystem (packages to include, init manager)</p>
+</li>
+<li>
+<p>ARM Trusted Firmware (ATF)</p>
+</li>
+<li>
+<p>Platform Management Unit Firmware (PMUFW)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Also includes sources or references for:</strong></p>
+<ul>
+<li>
+<p><code>boot.cmd</code> (source text file for <code>boot.scr</code>)</p>
+</li>
+<li>
+<p><code>image.its</code> (Image Tree Source file for <code>image.ub</code>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Configurations for all software components.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Component Source Code:</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> The actual C, assembly, and other source files for the Linux kernel, U-Boot, ATF, FSBL, PMUFW, and all user-space packages/libraries that will form the root filesystem.</p>
+</li>
+<li>
+<p><strong>Origin:</strong> PetaLinux (which uses Yocto Project components) typically fetches these automatically from Xilinx Git repositories or other configured source locations based on the project configurations.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> All compiled binary executables and libraries.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-petalinux-build-process-petalinux-build">2. PetaLinux Build Process (<code>petalinux-build</code>)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-petalinux-build-process-petalinux-build" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This is the central stage where the inputs are processed to compile and generate intermediate software components.</p>
+<h3 id="21-compilation-of-low-level-firmware--bootloaders">2.1. Compilation of Low-Level Firmware &amp; Bootloaders<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-compilation-of-low-level-firmware--bootloaders" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>
+<p><strong>FSBL (First Stage Bootloader) Executable (e.g., <code>fsbl.elf</code>):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A small, SoC-specific program that runs immediately after the BootROM.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> FSBL source code (from A2), FSBL configuration (from A1), Hardware Specification (XSA from A0).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Initializes essential PS hardware like DDR memory controller, clocks, and basic I/O. May load the PL bitstream. Prepares the system for the next boot stage.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Part of <code>BOOT.BIN</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>PMUFW (Platform Management Unit Firmware) Executable (e.g., <code>pmufw.elf</code>):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> Firmware for the PMU, which handles power management, error handling, and security features.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> PMUFW source code (from A2), PMUFW configuration (from A1).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Manages platform-level operations.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Part of <code>BOOT.BIN</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>bl31.elf</code> (ARM Trusted Firmware - BL31):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> Boot Loader stage 3, level 1 for ARMv8-A systems. Runs in EL3 (secure mode).</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> ATF source code (from A2), ATF configuration (from A1).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Sets up the secure environment, handles secure monitor calls, and prepares for loading the non-secure bootloader (U-Boot).</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Part of <code>BOOT.BIN</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>u-boot.elf</code> (U-Boot Bootloader Executable):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> The Universal Boot Loader, a versatile second-stage bootloader.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> U-Boot source code (from A2), U-Boot configuration (from A1).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Initializes more hardware (console, network, storage), provides a command-line interface, and is responsible for loading the Linux kernel and Device Tree.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Part of <code>BOOT.BIN</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-compilation-of-os-components">2.2. Compilation of OS Components<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-compilation-of-os-components" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>
+<p><strong><code>Image</code> (Raw Linux Kernel Image):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> The compiled Linux kernel binary (often uncompressed or minimally compressed for ARM64).</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Kernel source code (from A2), Kernel configuration (from A1).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> The core of the operating system, managing processes, memory, drivers, etc.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Packaged into <code>image.ub</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Device Tree Blob (DTB) (e.g., <code>system.dtb</code>):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A compiled, binary representation of the system’s hardware.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Device Tree Source files (DTS/DTSI, from A1, often derived from XSA in A0), DT configuration (from A1).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Describes the hardware components (CPUs, memory, peripherals, interrupts) to the Linux kernel, allowing a generic kernel to run on specific hardware.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> Packaged into <code>image.ub</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-building-the-root-filesystem">2.3. Building the Root Filesystem<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-building-the-root-filesystem" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>
+<p><strong>Populated RootFS Directory:</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A directory structure on the build host containing all the compiled user-space applications, libraries, configuration files, and scripts that will form the target’s root filesystem.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Package source code (from A2), RootFS configuration and package selections (from A1).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Represents the complete user-space environment of the embedded Linux system.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> <code>rootfs.ext4</code>, <code>rootfs.tar</code>/<code>.tar.gz</code>, and sysroot elements for the SDK.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>rootfs.manifest</code>:</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A text file listing all software packages and their versions included in the root filesystem.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Generated during the RootFS build (from D7).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Provides a Software Bill of Materials (SBOM) for debugging, compliance, and tracking.</p>
+</li>
+<li>
+<p><strong>Used for:</strong> Reference and software management.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-processing-script-sources">2.4. Processing Script Sources<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#24-processing-script-sources" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>
+<p><strong>Processed U-Boot Script Source (from <code>boot.cmd</code>):</strong></p>
+<ul>
+<li>
+<p><strong>Input:</strong> <code>boot.cmd</code> text file (typically from A1 or project sources).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> The <code>boot.cmd</code> file contains U-Boot commands to automate the boot process (e.g., loading kernel/DTB, setting boot arguments). PetaLinux processes this with <code>mkimage</code>.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> <code>boot.scr</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Processed FIT Image Source (from <code>image.its</code>):</strong></p>
+<ul>
+<li>
+<p><strong>Input:</strong> <code>image.its</code> (Image Tree Source) text file (typically from A1 or project sources).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> This file defines the structure and components (kernel, DTB, RAMdisk) of the FIT image. PetaLinux processes this with <code>mkimage</code>.</p>
+</li>
+<li>
+<p><strong>Used to generate:</strong> <code>image.ub</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-packaging-stage-petalinux-package-or-similar-build-steps">3. Packaging Stage (<code>petalinux-package</code> or similar build steps)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-packaging-stage-petalinux-package-or-similar-build-steps" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This stage takes the intermediate compiled components and packages them into deployable files.</p>
+<ul>
+<li>
+<p><strong><code>BOOT.BIN</code> (Primary Boot Image):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A composite binary file that the SoC’s BootROM loads first from the boot media (e.g., SD card).</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> <code>fsbl.elf</code> (D1), <code>pmufw.elf</code> (D2), <code>bl31.elf</code> (D3), <code>u-boot.elf</code> (D4), (Optional) FPGA Bitstream (from Vivado/Vitis).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Contains all the necessary firmware to initialize the system and launch U-Boot.</p>
+</li>
+<li>
+<p><strong>Destination:</strong> Boot Partition (FAT32) on the SD card.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>image.ub</code> (Kernel + DTB Package - U-Boot FIT Image):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A U-Boot Flattened Image Tree (FIT) image that bundles the kernel, DTB, and optionally a RAMdisk.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> <code>Image</code> (raw kernel from D5), Device Tree Blob (DTB from D6), FIT Definition (<code>.its</code> processed from C9), (Optional) RAMdisk data.</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Provides U-Boot with a verified and packaged set of OS components to load and boot.</p>
+</li>
+<li>
+<p><strong>Destination:</strong> Boot Partition (FAT32) on the SD card.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>boot.scr</code> (U-Boot Script Image):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A compiled U-Boot script that automates U-Boot commands.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Processed <code>boot.cmd</code> (from C8).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Instructs U-Boot on how to load <code>image.ub</code>, set kernel arguments, and start the kernel.</p>
+</li>
+<li>
+<p><strong>Destination:</strong> Boot Partition (FAT32) on the SD card.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>RootFS Packages:</strong></p>
+<ul>
+<li>
+<p><strong><code>rootfs.ext4</code> (Filesystem Image):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A raw disk image of the entire root filesystem, formatted as ext4.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Populated RootFS Directory (D7).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Can be directly written to a partition on the SD card to become the root filesystem.</p>
+</li>
+<li>
+<p><strong>Destination:</strong> Becomes the RootFS Partition (ext4) on the SD card.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>rootfs.tar</code> / <code>.tar.gz</code> (Filesystem Archive):</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A compressed archive (tarball) of all files and directories in the root filesystem.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Populated RootFS Directory (D7).</p>
+</li>
+<li>
+<p><strong>What it does:</strong> Can be extracted onto a pre-formatted ext4 partition on the SD card to create the root filesystem.</p>
+</li>
+<li>
+<p><strong>Destination:</strong> Extracted to the RootFS Partition (ext4) on the SD card.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>SDK Package (for Host PC):</strong></p>
+<ul>
+<li>
+<p><strong><code>sdk.sh*</code> (Installer Script) &amp; <code>sdk/</code> (SDK Data Directory):</strong></p>
+<ul>
+<li>
+<p><strong>What they are:</strong> An installer script and associated data files for setting up a cross-compilation Software Development Kit (SDK) on a host Linux PC.</p>
+</li>
+<li>
+<p><strong>Inputs:</strong> Built SDK Components (Toolchain, Sysroot elements derived from the build process, particularly from D7 - Populated RootFS Directory).</p>
+</li>
+<li>
+<p><strong>What they do:</strong> The <code>sdk.sh</code> script installs the cross-compiler, libraries, headers (sysroot), and environment setup scripts needed to develop applications for the target embedded Linux system.</p>
+</li>
+<li>
+<p><strong>Destination:</strong> Installed on the Host Development PC.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-informational-files">4. Informational Files<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-informational-files" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>
+<p><strong><code>README.txt</code>:</strong></p>
+<ul>
+<li>
+<p><strong>What it is:</strong> A text file providing information about the generated image package, potentially including usage instructions, version details, or known issues.</p>
+</li>
+<li>
+<p><strong>Used for:</strong> Developer reference.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-final-deployment-to-sd-card">5. Final Deployment to SD Card<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-final-deployment-to-sd-card" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>For a typical SD card boot:</p>
+<ul>
+<li>
+<p><strong>Boot Partition (FAT32):</strong></p>
+<ul>
+<li>
+<p><code>BOOT.BIN</code></p>
+</li>
+<li>
+<p><code>image.ub</code></p>
+</li>
+<li>
+<p><code>boot.scr</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>RootFS Partition (ext4):</strong></p>
+<ul>
+<li>Either the <code>rootfs.ext4</code> image is written directly to this partition, or the contents of <code>rootfs.tar.gz</code> are extracted here.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-host-development">6. Host Development<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-host-development" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>The <code>sdk.sh*</code> script is run on a host Linux development machine to install the SDK. This SDK is then used to compile applications that can be copied to the target’s root filesystem and run on the embedded device.</li>
+</ul>
+<p>This flow provides a robust and customizable way to build embedded Linux systems tailored to specific hardware and application needs.</p>
+<h1 id="example-bif-file">Example bif file<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#example-bif-file" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<pre><code>/* linux */
+the_ROM_image:
+{
+  [fsbl_config] a53_x64
+  [bootloader] &lt;fsbl.elf>
+  [pmufw_image] &lt;pmufw.elf>
+  [destination_device=pl] &lt;bitstream>
+  [destination_cpu=a53-0, exception_level=el-3, trustzone] &lt;atf,bl31.elf>
+  [load=0x00100000] &lt;dtb,system.dtb>
+  [destination_cpu=a53-0, exception_level=el-2] &lt;uboot,u-boot.elf>
+}
+
+
+</code></pre>
+<p>Bootargs list : <a href="https://www.kernel.org/doc/html/v4.14/admin-guide/kernel-parameters.html" class="external">Link<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<h2 id="bitbake-user-manual">BitBake User Manual<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#bitbake-user-manual" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><a href="https://docs.yoctoproject.org/bitbake/2.12/index.html" class="external">https://docs.yoctoproject.org/bitbake/2.12/index.html<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<h2 id="yocto-reference-manual">Yocto Reference Manual<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#yocto-reference-manual" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><a href="https://docs.yoctoproject.org/ref-manual/index.html" class="external">https://docs.yoctoproject.org/ref-manual/index.html<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<h2 id="default-device-tree-github-repo">Default Device Tree Github Repo<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#default-device-tree-github-repo" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><a href="https://github.com/Xilinx/device-tree-xlnx" class="external">https://github.com/Xilinx/device-tree-xlnx<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="toc desktop-only"><button type="button" id="toc" class aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content" class><ul class="overflow"><li class="depth-1"><a href="#if-using-the-default-initrd-filesystem-mode" data-for="if-using-the-default-initrd-filesystem-mode">If using the default INITRD filesystem mode</a></li><li class="depth-1"><a href="#if-using-ext4" data-for="if-using-ext4">If using ext4</a></li><li class="depth-0"><a href="#how-to-use-ext4-use-sd-card-partition-as-root-filesystem" data-for="how-to-use-ext4-use-sd-card-partition-as-root-filesystem">How to use ext4 (use SD card partition as root filesystem)</a></li><li class="depth-0"><a href="#sd-card-errors" data-for="sd-card-errors">SD card errors</a></li><li class="depth-0"><a href="#petalinux-build-flow-and-file-reference" data-for="petalinux-build-flow-and-file-reference">PetaLinux Build Flow and File Reference</a></li><li class="depth-1"><a href="#1-core-inputs--configurations" data-for="1-core-inputs--configurations">1. Core Inputs &amp; Configurations</a></li><li class="depth-1"><a href="#2-petalinux-build-process-petalinux-build" data-for="2-petalinux-build-process-petalinux-build">2. PetaLinux Build Process (petalinux-build)</a></li><li class="depth-2"><a href="#21-compilation-of-low-level-firmware--bootloaders" data-for="21-compilation-of-low-level-firmware--bootloaders">2.1. Compilation of Low-Level Firmware &amp; Bootloaders</a></li><li class="depth-2"><a href="#22-compilation-of-os-components" data-for="22-compilation-of-os-components">2.2. Compilation of OS Components</a></li><li class="depth-2"><a href="#23-building-the-root-filesystem" data-for="23-building-the-root-filesystem">2.3. Building the Root Filesystem</a></li><li class="depth-2"><a href="#24-processing-script-sources" data-for="24-processing-script-sources">2.4. Processing Script Sources</a></li><li class="depth-1"><a href="#3-packaging-stage-petalinux-package-or-similar-build-steps" data-for="3-packaging-stage-petalinux-package-or-similar-build-steps">3. Packaging Stage (petalinux-package or similar build steps)</a></li><li class="depth-1"><a href="#4-informational-files" data-for="4-informational-files">4. Informational Files</a></li><li class="depth-1"><a href="#5-final-deployment-to-sd-card" data-for="5-final-deployment-to-sd-card">5. Final Deployment to SD Card</a></li><li class="depth-1"><a href="#6-host-development" data-for="6-host-development">6. Host Development</a></li><li class="depth-0"><a href="#example-bif-file" data-for="example-bif-file">Example bif file</a></li><li class="depth-1"><a href="#bitbake-user-manual" data-for="bitbake-user-manual">BitBake User Manual</a></li><li class="depth-1"><a href="#yocto-reference-manual" data-for="yocto-reference-manual">Yocto Reference Manual</a></li><li class="depth-1"><a href="#default-device-tree-github-repo" data-for="default-device-tree-github-repo">Default Device Tree Github Repo</a></li></ul></div></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.4.0</a> © 2026</p><ul></ul></footer></div></div></body><script type="application/javascript">function c(){let t=this.parentElement;t.classList.toggle("is-collapsed");let l=t.classList.contains("is-collapsed")?this.scrollHeight:t.scrollHeight;t.style.maxHeight=l+"px";let o=t,e=t.parentElement;for(;e;){if(!e.classList.contains("callout"))return;let n=e.classList.contains("is-collapsed")?e.scrollHeight:e.scrollHeight+o.scrollHeight;e.style.maxHeight=n+"px",o=e,e=e.parentElement}}function i(){let t=document.getElementsByClassName("callout is-collapsible");for(let s of t){let l=s.firstElementChild;if(l){l.addEventListener("click",c),window.addCleanup(()=>l.removeEventListener("click",c));let e=s.classList.contains("is-collapsed")?l.scrollHeight:s.scrollHeight;s.style.maxHeight=e+"px"}}}document.addEventListener("nav",i);window.addEventListener("resize",i);
+</script><script type="module">
+          let mermaidImport = undefined
+          document.addEventListener('nav', async () => {
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
+          });
+          </script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>

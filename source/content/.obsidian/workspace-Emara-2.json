@@ -1,0 +1,220 @@
+{
+  "main": {
+    "id": "7a8c2be7ede666df",
+    "type": "split",
+    "children": [
+      {
+        "id": "b572b18cbe6a30ff",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ab69848f005ba5db",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Xilinx Terminology.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Xilinx Terminology"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "445e25200266fe6f",
+    "type": "split",
+    "children": [
+      {
+        "id": "64cd045c7be06f6e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ac017669f9193620",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e2c8fe90ec97e8e7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "8d5f1d74d4baad55",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "4999bac22620b0d2",
+    "type": "split",
+    "children": [
+      {
+        "id": "195926cb6c9496db",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "af98fe01060c43ea",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "FPGAs, SoCs, and Development Boards.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for FPGAs, SoCs, and Development Boards"
+            }
+          },
+          {
+            "id": "ad750d80aa950c31",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "FPGAs, SoCs, and Development Boards.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from FPGAs, SoCs, and Development Boards"
+            }
+          },
+          {
+            "id": "45a7f054fa73061b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "b31cf3168a06b2a9",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "FPGAs, SoCs, and Development Boards.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of FPGAs, SoCs, and Development Boards"
+            }
+          },
+          {
+            "id": "977519f107429dbd",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "ab69848f005ba5db",
+  "lastOpenFiles": [
+    "Pasted image 20250422215627.png",
+    "User Guides/UG892 - Design Flows Overview-pc-safeBackup-0001.md",
+    "Xilinx Terminology-pc-safeBackup-0001.md",
+    "Xilinx Docs-pc-safeBackup-0001.md",
+    "Xilinx Docs.md",
+    "Xilinx Terminology.md",
+    "Vivado Quick Tutorial.md",
+    "User Guides/UG892 - Design Flows Overview.md",
+    "User Guides/UG888 - Design Flows Overview Tutorial.md",
+    "User Guides/UG910 - Getting Started.md",
+    "User Guides/UG1209.md",
+    "attachments/Pasted image 20250403225549.png",
+    "attachments/Pasted image 20250408232738.png",
+    "attachments/Pasted image 20250409124443.png",
+    "attachments/Pasted image 20250409125000.png",
+    "attachments/Pasted image 20250409142003.png",
+    "attachments/Pasted image 20250409192810.png",
+    "Vitis Quick Tutorial.md",
+    "PetaLinux Quick Tutorial.md",
+    "Landing Page.md",
+    "ZCU102 Board/ZCU102.md",
+    "User Guides",
+    "ZCU102 Board/ZCU102-pc-safeBackup-0001.md",
+    "FPGAs, SoCs, and Development Boards.md",
+    "logs/vitis.log",
+    "logs",
+    "vivado_pid7916.str",
+    "vivado.log",
+    "vivado.jou",
+    "Xilinx Docs.md.partial",
+    "Terms/Platform.md"
+  ]
+}

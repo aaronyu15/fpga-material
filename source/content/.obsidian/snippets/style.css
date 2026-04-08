@@ -1,0 +1,22 @@
+img[alt*="center"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 1; 
+}
+
+.theme-dark .markdown-preview-view img {
+    opacity: 1;                   
+}
+
+.theme-dark .markdown-source-view img {
+    opacity: 1;                   
+}
+
+.markdown-preview-view p {
+	margin-bottom: 0em;
+}
+
+.markdown-preview-view ul {
+  margin-top: 0em;
+}

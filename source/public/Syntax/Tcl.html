@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Tcl</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="Tcl"/><meta property="og:description" content="A Practical Guide to Tcl Scripting: Syntax and Templates Tcl (Tool Command Language) is a powerful, dynamic scripting language known for its simple syntax and easy integration with ..."/><meta property="og:image" content="https://aaronyu15.github.io/fpga-material//static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="A Practical Guide to Tcl Scripting: Syntax and Templates Tcl (Tool Command Language) is a powerful, dynamic scripting language known for its simple syntax and easy integration with ..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="Syntax/Tcl"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">FPGA Resources</a></h2><div class="spacer mobile-only"></div><div class="search"><button class="search-button" id="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="search-layout" data-preview="true"></div></div></div></div><button class="darkmode" id="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;01-Core-Content&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Others&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Syntax&quot;,&quot;collapsed&quot;:true}]" aria-controls="explorer-content" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="01-Core-Content"><button class="folder-button"><span class="folder-title">01 Core Content</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="01-Core-Content"><li><a href="../01-Core-Content/FPGAs,-SoCs,-and-Development-Boards" data-for="01-Core-Content/FPGAs,-SoCs,-and-Development-Boards">FPGAs, SoCs, and Development Boards</a></li><li><a href="../01-Core-Content/PetaLinux-Quick-Tutorial" data-for="01-Core-Content/PetaLinux-Quick-Tutorial">PetaLinux Quick Tutorial</a></li><li><a href="../01-Core-Content/Vitis-Quick-Tutorial" data-for="01-Core-Content/Vitis-Quick-Tutorial">Vitis Quick Tutorial</a></li><li><a href="../01-Core-Content/Vivado-Quick-Tutorial" data-for="01-Core-Content/Vivado-Quick-Tutorial">Vivado Quick Tutorial</a></li><li><a href="../01-Core-Content/Xilinx-Docs" data-for="01-Core-Content/Xilinx-Docs">Xilinx Docs</a></li><li><a href="../01-Core-Content/Xilinx-Terminology" data-for="01-Core-Content/Xilinx-Terminology">Xilinx Terminology</a></li></ul></div></li><li><div class="folder-outer "><ul style="padding-left:0;" class="content" data-folderul></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Others"><button class="folder-button"><span class="folder-title">Others</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Others"><li><a href="../Others/Git-Command-Line" data-for="Others/Git-Command-Line">Git Command Line</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Syntax"><button class="folder-button"><span class="folder-title">Syntax</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Syntax"><li><a href="../Syntax/Bash" data-for="Syntax/Bash">Bash</a></li><li><a href="../Syntax/LaTeX" data-for="Syntax/LaTeX">LaTeX</a></li><li><a href="../Syntax/Makefile" data-for="Syntax/Makefile">Makefile</a></li><li><a href="../Syntax/Tcl" data-for="Syntax/Tcl">Tcl</a></li></ul></div></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../Syntax/">Syntax</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Tcl</a></div></nav><h1 class="article-title">Tcl</h1><p show-comma="true" class="content-meta"><span>Apr 08, 2026</span><span>11 min read</span></p></div></div><article class="popover-hint"><p>A Practical Guide to Tcl Scripting: Syntax and Templates
+Tcl (Tool Command Language) is a powerful, dynamic scripting language known for its simple syntax and easy integration with other applications, especially in the domain of electronic design automation (EDA) and testing. This guide provides a collection of the most common syntax patterns and templates.</p>
+<ol>
+<li>Tcl Fundamentals: The “Everything is a Command” Principle
+In Tcl, every statement is a command, including variable assignments, loops, and procedure definitions. A command is a list of words separated by spaces, where the first word is the command name and subsequent words are its arguments.</li>
+</ol>
+<p>Basic Script Structure</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The 'puts' command prints a string to standard output.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Hello, World!&quot;</span></span></code></pre></figure>
+<p>Variables and Substitution
+<code>set</code>: Assigns a value to a variable. Quotes are optional unless there are spaces/special characters.
+<code>$</code>: Substitutes the value of a variable.
+<code>[]</code>: Command Substitution. Executes the command inside the brackets and substitutes its result.
+<code>{}</code>: Groups words into a single argument without performing substitutions. Treats the content as a literal string.
+<code>&quot;&quot;</code>: Groups words into a single argument with substitutions.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Variable assignment</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> user </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Alex&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> # Quotes are optional unless there are spaces/special characters</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Variable substitution</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Hello, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$user</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Command substitution</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> num_files [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">llength</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">glob</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> *.tcl]]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;There are </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$num_files</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> Tcl files in this directory.&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Grouping with &quot;&quot; (substitutes $user)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> message </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;User: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$user</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $message</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> # Prints </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;User: Alex&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Grouping with {} (does NOT substitute $user)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> literal_message {User: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$user</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $literal_message</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> # Prints </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;User: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$user</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span></code></pre></figure>
+<ol start="2">
+<li>Variables and Data Structures
+Simple Variables and Expressions</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> a </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">10</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> b </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The 'expr' command evaluates a mathematical expression</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> sum [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">expr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$a</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> +</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}] # The literal </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$a</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> + </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$b</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> is evaluated by expr's internel parser</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> product [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">expr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$a</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> *</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}]</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Sum is: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$sum</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span></code></pre></figure>
+<p>Lists</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Create a list</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> my_list {apple banana cherry}</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># or</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> my_list [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">list</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;apple&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;banana&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;cherry&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Add an element to a list</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">lappend</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> my_list </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;orange&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Get the length of a list</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> len [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">llength</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $my_list</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Get an element by index (0-based)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> first_item [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">lindex</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $my_list</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;The first item is: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$first_item</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span></code></pre></figure>
+<p>Arrays (Associative Arrays)
+Arrays in Tcl are key-value pairs, similar to dictionaries or hash maps in other languages.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Set array elements</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> user_data(name) </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Alice&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> user_data(id) </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;12345&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> user_data(email) </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;alice@example.com&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Access an array element</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;User's email is: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$user_data(email)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Check if a key exists</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {[</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">info</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> exists user_data(id)]} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;User ID exists.&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Get a list of all keys in the array</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> all_keys [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> names user_data]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Available user data keys: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$all_keys</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> # name id email</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># A handy way to print all array contents</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">parray</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> user_data</span></span></code></pre></figure>
+<ol start="3">
+<li>Control Structures
+Note the required spacing and the use of {} to group the command blocks.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> score </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">85</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$score</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> >=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 90</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Grade: A&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">elseif</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$score</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> >=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 80</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Grade: B&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Grade: C or lower&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<p><code>foreach</code> Loop (for lists)
+Loops can be controlled using <code>break</code> and <code>continue</code>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> servers {serverA serverB serverC}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">foreach</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> server </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$servers</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Processing server: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$server</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<p><code>for</code> Loop (C-style)</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Loop from 0 to 4</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> i </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$i</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &lt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} {</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">incr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> i} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Iteration: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<p><code>while</code> Loop</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> count </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">3</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">while</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$count</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> ></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Countdown: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$count</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    incr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<p><code>switch</code> Statement
+A powerful way to match a value against multiple patterns.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> fruit </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;apple&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">switch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $fruit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    apple {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;It's a red fruit.&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    banana {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;It's a yellow fruit.&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    grape -</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    cherry {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;It's a small fruit.&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Unknown fruit.&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<ol start="4">
+<li>Procedures (Functions)
+Procedures are defined with proc.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Define a procedure with one required and one optional argument</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">proc</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> greet</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {name {greeting </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Hello&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    return</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$greeting</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$name</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">!&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># --- Call the procedure</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> message1 [greet </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;World&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $message1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> ;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Prints &quot;Hello, World!&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> message2 [greet </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Alice&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Greetings&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $message2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> ;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Prints &quot;Greetings, Alice!&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Use sepcial name 'args' to accent any number of trailing arguments</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">proc</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> sum</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {args} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> total </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> </span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    foreach</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> num </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$args</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        incr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> total </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$num</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> </span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    } </span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $total</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> </span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} </span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [sum </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">10</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 20</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 30</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">] ;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Output: 60</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Use 'global' keyword to make variable access value outside its scope</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">proc</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> example</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {args} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    global</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> var</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> var</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<ol start="5">
+<li>File I/O Recipes
+Reading a File Line by Line</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> filename </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;my_data.txt&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {![</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">file</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> exists </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$filename</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Error: File '</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$filename</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">' not found.&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    return</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> f [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">open</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $filename</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> r]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">while</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {[</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">gets</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $f</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> line] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">>=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Process each line</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Read line: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$line</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">close</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $f</span></span></code></pre></figure>
+<p>Writing to a File</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> filename </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;output.log&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 'w' for write (overwrites), 'a' for append</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> f [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">open</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $filename</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> w]</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;This is the first line.&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $f</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;This is the second line.&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">close</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $f</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Wrote data to </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$filename</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span></code></pre></figure>
+<ol start="6">
+<li>String Manipulation
+Basic String Commands</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> my_string </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;This is a Tcl script&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Length: [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">string</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> length </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$my_string</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">]&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Substring: [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">string</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> range </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$my_string</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 6</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">]&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> ;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Prints &quot;is&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Index of 'Tcl': [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">string</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> first &quot;Tcl&quot; </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$my_string</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">]&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">Regular Expression Matching</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> text </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;My IP is 192.168.1.100&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Use regexp to check for a match and extract parts</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {[</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">regexp</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF;"> {([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})}</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> match first_octet]} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;IP Address Found: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$match</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;First octet is: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$first_octet</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<ol start="7">
+<li>Executing External Commands
+The exec command runs an external program. It’s often wrapped in a catch block to handle errors gracefully.</li>
+</ol>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># The 'catch' command executes a script and traps any errors.</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># It returns 0 if no error, non-zero otherwise. The result or error message is stored in 'result'.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {[</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">catch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">exec</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> ls -l *.tcl} result]} {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Error executing command: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$result</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Command successful. Output:&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $result</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<p>Automatically created variables in a script.</p>
+<ul>
+<li><code>$argc</code> - Number of command-line arguments passed to the script.</li>
+<li><code>$argv</code> - List of command-line arguments.</li>
+<li><code>$argv0</code> - Name of the script being executed.</li>
+<li><code>$env</code> - Array containing environment variables. Access like <code>$env(PATH</code>, <code>$env(HOME)</code></li>
+<li><code>$auto_path</code> - list of directories to search for packages</li>
+</ul>
+<p>Other Notes</p>
+<ul>
+<li>User defined namespaces can be used to avoid conflicting the global space</li>
+<li>Weird ass notation for scope names with <code>::</code>. The first <code>::</code> refers to the global namespace, so you can also write <code>namespace eval ::reporting</code> to define the namespace relative to the global scope, instead of the possible sub-scope when it is “imported”.</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 'namespace eval' is the command name</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">namespace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> eval reporting {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # This variable lives inside the 'reporting' namespace</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> version </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1.0</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # This procedure lives inside the 'reporting' namespace</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    proc</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> generate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {data} {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">        # ... implementation ...</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        return</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Report v</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$::reporting::version</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> generated.&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To access the variable:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $::reporting::version</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To call the procedure:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> report [::reporting::generate </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;some_data&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">puts</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> $report</span></span></code></pre></figure>
+<ul>
+<li>Importing packages (packages are not the same as user defined namespaces)</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="tcl" data-theme="github-light github-dark"><code data-language="tcl" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Request version 8.6 or newer of the Tk package.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">package</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> require Tk </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">8.6</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Now that the package is loaded, we can use commands from it, like 'label'.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">label .myLabel -text </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Hello, GUI World!&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">pack .myLabel</span></span></code></pre></figure>
+<h1 id="list-of-common-commands">List of common commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#list-of-common-commands" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>This guide provides a detailed list of common Tcl commands whose primary purpose is to <strong>return a value</strong>, making them ideal candidates for use within <code>[]</code> command substitution blocks.</p>
+<h2 id="1-list-manipulation">1. List Manipulation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-list-manipulation" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>These commands are the workhorses for handling ordered collections of data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:left;">Command</th><th style="text-align:left;">Syntax &amp; Purpose</th><th style="text-align:left;">Example &amp; Return Value</th></tr></thead><tbody><tr><td style="text-align:left;"><strong>llength</strong></td><td style="text-align:left;"><code>llength list</code> <br/> Returns the number of elements in a list.</td><td style="text-align:left;"><code>set n [llength {a b c}]</code> <br/> <em>Returns:</em> <code>3</code></td></tr><tr><td style="text-align:left;"><strong>lindex</strong></td><td style="text-align:left;"><code>lindex list index</code> <br/> Returns the element at a specific <code>index</code>.</td><td style="text-align:left;"><code>set item [lindex {a b c} 1]</code> <br/> <em>Returns:</em> <code>b</code></td></tr><tr><td style="text-align:left;"><strong>lrange</strong></td><td style="text-align:left;"><code>lrange list first last</code> <br/> Returns a new list containing a range of elements.</td><td style="text-align:left;"><code>set sub [lrange {a b c d} 1 2]</code> <br/> <em>Returns:</em> <code>b c</code></td></tr><tr><td style="text-align:left;"><strong>lsearch</strong></td><td style="text-align:left;"><code>lsearch ?options? list pattern</code> <br/> Finds an element matching a <code>pattern</code> and returns its index, or <code>-1</code> if not found.</td><td style="text-align:left;"><code>set idx [lsearch {a b c} b]</code> <br/> <em>Returns:</em> <code>1</code></td></tr><tr><td style="text-align:left;"><strong>lsort</strong></td><td style="text-align:left;"><code>lsort ?options? list</code> <br/> Returns a new list with the elements sorted.</td><td style="text-align:left;"><code>set sorted [lsort -integer {5 1 3}]</code> <br/> <em>Returns:</em> <code>1 3 5</code></td></tr><tr><td style="text-align:left;"><strong>join</strong></td><td style="text-align:left;"><code>join list ?joinString?</code> <br/> Joins the elements of a list into a single string.</td><td style="text-align:left;"><code>set str [join {a b c} &quot;,&quot;]</code> <br/> <em>Returns:</em> <code>a,b,c</code></td></tr><tr><td style="text-align:left;"><strong>split</strong></td><td style="text-align:left;"><code>split string ?splitChars?</code> <br/> Splits a string into a list.</td><td style="text-align:left;"><code>set list [split &quot;a,b,c&quot; &quot;,&quot;]</code> <br/> <em>Returns:</em> <code>a b c</code></td></tr><tr><td style="text-align:left;"><strong>list</strong></td><td style="text-align:left;"><code>list ?arg1 arg2 ...?</code> <br/> Creates a properly escaped list from its arguments.</td><td style="text-align:left;"><code>set list [list &quot;An item&quot; &quot;Another&quot;]</code> <br/> <em>Returns:</em> <code>{An item} Another</code></td></tr></tbody></table></div>
+<h2 id="2-string-manipulation">2. String Manipulation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-string-manipulation" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Essential for parsing and formatting text.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:left;">Command</th><th style="text-align:left;">Syntax &amp; Purpose</th><th style="text-align:left;">Example &amp; Return Value</th></tr></thead><tbody><tr><td style="text-align:left;"><strong>string</strong></td><td style="text-align:left;"><code>string sub-command string ?args?</code> <br/> A suite of commands for string operations.</td><td style="text-align:left;"></td></tr><tr><td style="text-align:left;">  <code>length</code></td><td style="text-align:left;"><code>string length string</code></td><td style="text-align:left;"><code>set len [string length &quot;Tcl&quot;]</code> <br/> <em>Returns:</em> <code>3</code></td></tr><tr><td style="text-align:left;">  <code>range</code></td><td style="text-align:left;"><code>string range string first last</code></td><td style="text-align:left;"><code>set sub [string range &quot;abcde&quot; 1 3]</code> <br/> <em>Returns:</em> <code>bcd</code></td></tr><tr><td style="text-align:left;">  <code>map</code></td><td style="text-align:left;"><code>string map {charMap} string</code> <br/> Replaces multiple characters in one pass.</td><td style="text-align:left;"><code>set new [string map {a 1 b 2} &quot;abc&quot;]</code> <br/> <em>Returns:</em> <code>12c</code></td></tr><tr><td style="text-align:left;">  <code>trim</code></td><td style="text-align:left;"><code>string trim string ?chars?</code> <br/> Removes leading/trailing characters (whitespace by default).</td><td style="text-align:left;"><code>set clean [string trim &quot;  hi  &quot;]</code> <br/> <em>Returns:</em> <code>hi</code></td></tr><tr><td style="text-align:left;">  <code>toupper</code></td><td style="text-align:left;"><code>string toupper string</code> <br/> Make an uppercase string.</td><td style="text-align:left;"><code>set var [string toupper &quot;hi&quot;]</code> <br/> <em>Returns:</em> <code>HI</code></td></tr><tr><td style="text-align:left;"><strong>format</strong></td><td style="text-align:left;"><code>format formatString ?val...?</code> <br/> Creates a formatted string like C’s <code>sprintf</code>.</td><td style="text-align:left;"><code>set hex [format &quot;0x%04X&quot; 255]</code> <br/> <em>Returns:</em> <code>0x00FF</code></td></tr><tr><td style="text-align:left;"><strong>scan</strong></td><td style="text-align:left;"><code>scan string format ?var...?</code> <br/> Parses a string according to a format and populates variables. Returns the number of successful conversions.</td><td style="text-align:left;"><code>set n [scan &quot;id:123&quot; &quot;id:%d&quot; my_id]</code> <br/> <em>Returns:</em> <code>1</code> (and sets <code>my_id</code> to <code>123</code>)</td></tr><tr><td style="text-align:left;"><strong>regexp</strong></td><td style="text-align:left;"><code>regexp ?opts? exp str ?match...?</code> <br/> Matches a regular expression. Returns <code>1</code> on success, <code>0</code> on failure. Populates match variables.</td><td style="text-align:left;"><code>set found [regexp {(\d+)} &quot;age:42&quot; -> num]</code> <br/> <em>Returns:</em> <code>1</code> (and sets <code>num</code> to <code>42</code>)</td></tr></tbody></table></div>
+<h2 id="3-file-system-interaction">3. File System Interaction<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-file-system-interaction" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>For querying and manipulating files and directories.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:left;">Command</th><th style="text-align:left;">Syntax &amp; Purpose</th><th style="text-align:left;">Example &amp; Return Value</th></tr></thead><tbody><tr><td style="text-align:left;"><strong>file</strong></td><td style="text-align:left;"><code>file sub-command name ?args?</code> <br/> A suite of commands for file attributes.</td><td style="text-align:left;"></td></tr><tr><td style="text-align:left;">  <code>exists</code></td><td style="text-align:left;"><code>file exists name</code></td><td style="text-align:left;"><code>set found [file exists data.txt]</code> <br/> <em>Returns:</em> <code>1</code> or <code>0</code></td></tr><tr><td style="text-align:left;">  <code>size</code></td><td style="text-align:left;"><code>file size name</code></td><td style="text-align:left;"><code>set bytes [file size data.txt]</code> <br/> <em>Returns:</em> The file size in bytes.</td></tr><tr><td style="text-align:left;">  <code>isdir</code></td><td style="text-align:left;"><code>file isdirectory name</code></td><td style="text-align:left;"><code>set isdir [file isdirectory /etc]</code> <br/> <em>Returns:</em> <code>1</code> or <code>0</code></td></tr><tr><td style="text-align:left;">  <code>join</code></td><td style="text-align:left;"><code>file join path1 path2 ...</code> <br/> Joins path components with the correct separator.</td><td style="text-align:left;"><code>set p [file join /home user file.txt]</code> <br/> <em>Returns:</em> <code>/home/user/file.txt</code></td></tr><tr><td style="text-align:left;">  <code>dirname</code></td><td style="text-align:left;"><code>file dirname path</code></td><td style="text-align:left;"><code>set dir [file dirname /a/b/c.txt]</code> <br/> <em>Returns:</em> <code>/a/b</code></td></tr><tr><td style="text-align:left;">  <code>tail</code></td><td style="text-align:left;"><code>file tail path</code></td><td style="text-align:left;"><code>set name [file tail /a/b/c.txt]</code> <br/> <em>Returns:</em> <code>c.txt</code></td></tr><tr><td style="text-align:left;"><strong>glob</strong></td><td style="text-align:left;"><code>glob ?switches? pattern</code> <br/> Returns a list of files matching a wildcard pattern.</td><td style="text-align:left;"><code>set files [glob *.tcl]</code> <br/> <em>Returns:</em> A list of Tcl files.</td></tr><tr><td style="text-align:left;"><strong>pwd</strong></td><td style="text-align:left;"><code>pwd</code> <br/> Returns the current working directory.</td><td style="text-align:left;"><code>set cwd [pwd]</code> <br/> <em>Returns:</em> The full path of the current directory.</td></tr><tr><td style="text-align:left;"><strong>open</strong></td><td style="text-align:left;"><code>open fileName ?access?</code> <br/> Opens a file. Returns a channel handle (e.g., <code>file3</code>).</td><td style="text-align:left;"><code>set chan [open data.txt r]</code> <br/> <em>Returns:</em> A channel ID like <code>file3</code>.</td></tr><tr><td style="text-align:left;"><strong>gets</strong></td><td style="text-align:left;"><code>gets channelId ?varName?</code> <br/> Reads a line from a channel. Returns the number of characters read, or a negative number on EOF. If <code>varName</code> is given, the line is stored there.</td><td style="text-align:left;"><code>set num_chars [gets $chan line]</code> <br/> <em>Returns:</em> Number of chars read.</td></tr></tbody></table></div>
+<h2 id="4-introspection-and-state">4. Introspection and State<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-introspection-and-state" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>For querying the state of the Tcl interpreter itself.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:left;">Command</th><th style="text-align:left;">Syntax &amp; Purpose</th><th style="text-align:left;">Example &amp; Return Value</th></tr></thead><tbody><tr><td style="text-align:left;"><strong>info</strong></td><td style="text-align:left;"><code>info sub-command ?args?</code> <br/> Provides information about the Tcl state.</td><td style="text-align:left;"></td></tr><tr><td style="text-align:left;">  <code>exists</code></td><td style="text-align:left;"><code>info exists varName</code></td><td style="text-align:left;"><code>set v_exists [info exists my_var]</code> <br/> <em>Returns:</em> <code>1</code> or <code>0</code></td></tr><tr><td style="text-align:left;">  <code>commands</code></td><td style="text-align:left;"><code>info commands ?pattern?</code></td><td style="text-align:left;"><code>set list_cmds [info commands l*]</code> <br/> <em>Returns:</em> <code>list llength lindex lsort ...</code></td></tr><tr><td style="text-align:left;">  <code>procs</code></td><td style="text-align:left;"><code>info procs ?pattern?</code></td><td style="text-align:left;"><code>set my_procs [info procs]</code> <br/> <em>Returns:</em> A list of all defined procedures.</td></tr><tr><td style="text-align:left;">  <code>level</code></td><td style="text-align:left;"><code>info level ?number?</code></td><td style="text-align:left;"><code>set stack [info level 0]</code> <br/> <em>Returns:</em> The command at the top of the call stack.</td></tr><tr><td style="text-align:left;">  <code>script</code></td><td style="text-align:left;"><code>info script</code></td><td style="text-align:left;"><code>set script_path [info script]</code> <br/> <em>Returns:</em> The path to the currently executing script.</td></tr></tbody></table></div>
+<h2 id="5-execution-and-flow-control">5. Execution and Flow Control<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-execution-and-flow-control" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:left;">Command</th><th style="text-align:left;">Syntax &amp; Purpose</th><th style="text-align:left;">Example &amp; Return Value</th></tr></thead><tbody><tr><td style="text-align:left;"><strong>expr</strong></td><td style="text-align:left;"><code>expr {expression}</code> <br/> Evaluates a mathematical or logical expression.</td><td style="text-align:left;"><code>set val [expr { (5 * 4) + 2 }]</code> <br/> <em>Returns:</em> <code>22</code></td></tr><tr><td style="text-align:left;"><strong>catch</strong></td><td style="text-align:left;"><code>catch {script} ?resultVar?</code> <br/> Executes a script and traps errors. Returns <code>0</code> on success, <code>1</code> on error.</td><td style="text-align:left;"><code>set status [catch {set x [expr {1/0}]} msg]</code> <br/> <em>Returns:</em> <code>1</code> (and sets <code>msg</code> to “divide by zero”)</td></tr><tr><td style="text-align:left;"><strong>exec</strong></td><td style="text-align:left;"><code>exec ?switches? arg1 ?arg2 ...?</code> <br/> Executes an external command. Returns the standard output of that command.</td><td style="text-align:left;"><code>set who [exec whoami]</code> <br/> <em>Returns:</em> The current username.</td></tr><tr><td style="text-align:left;"><strong>incr</strong></td><td style="text-align:left;"><code>incr varName ?increment?</code> <br/> Increment <code>varName</code> by a specific amount. Default adds 1.</td><td style="text-align:left;"><code>set var [incr var 1]</code></td></tr></tbody></table></div>
+<h2 id="6-date-and-time">6. Date and Time<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-date-and-time" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:left;">Command</th><th style="text-align:left;">Syntax &amp; Purpose</th><th style="text-align:left;">Example &amp; Return Value</th></tr></thead><tbody><tr><td style="text-align:left;"><strong>clock</strong></td><td style="text-align:left;"><code>clock sub-command ?args?</code> <br/> Suite of commands for time operations.</td><td style="text-align:left;"></td></tr><tr><td style="text-align:left;">  <code>seconds</code></td><td style="text-align:left;"><code>clock seconds</code></td><td style="text-align:left;"><code>set epoch [clock seconds]</code> <br/> <em>Returns:</em> Integer seconds since 1970-01-01.</td></tr><tr><td style="text-align:left;">  <code>format</code></td><td style="text-align:left;"><code>clock format seconds ?opts?</code></td><td style="text-align:left;"><code>set date [clock format $epoch -format %Y-%m-%d]</code> <br/> <em>Returns:</em> <code>2025-06-29</code></td></tr><tr><td style="text-align:left;">  <code>scan</code></td><td style="text-align:left;"><code>clock scan dateString ?opts?</code></td><td style="text-align:left;"><code>set epoch [clock scan &quot;2025-06-29&quot;]</code> <br/> <em>Returns:</em> The epoch time for that date.</td></tr></tbody></table></div>
+<h1 id="useful-vivado-tcl-commands">Useful Vivado tcl commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#useful-vivado-tcl-commands" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="get-objects">Get objects<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#get-objects" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><code>get_cells</code>
+<code>get_clocks</code>
+<code>get_nets</code>
+<code>get_pins</code>
+<code>get_ports</code>
+<code>get_timing_arcs</code>
+<code>get_timing_paths</code>
+<code>get_waves</code></p>
+<p><code>all_clocks</code>
+<code>all_cpus</code>
+<code>all_dsps</code>
+<code>all_fanin</code>
+<code>all_fanout</code>
+<code>all_ffs</code>
+<code>all_hsios</code>
+<code>all_inputs</code>
+<code>all_latches</code>
+<code>all_outputs</code>
+<code>all_rams</code>
+<code>all_registers</code></p>
+<h2 id="selecting">Selecting<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#selecting" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><code>select_objects</code>
+<code>highlight_objects</code>
+<code>mark_objects</code>
+<code>unselect_objects</code>
+<code>unhighlight_objects</code>
+<code>unmark_objects</code></p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="toc desktop-only"><button type="button" id="toc" class aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content" class><ul class="overflow"><li class="depth-0"><a href="#list-of-common-commands" data-for="list-of-common-commands">List of common commands</a></li><li class="depth-1"><a href="#1-list-manipulation" data-for="1-list-manipulation">1. List Manipulation</a></li><li class="depth-1"><a href="#2-string-manipulation" data-for="2-string-manipulation">2. String Manipulation</a></li><li class="depth-1"><a href="#3-file-system-interaction" data-for="3-file-system-interaction">3. File System Interaction</a></li><li class="depth-1"><a href="#4-introspection-and-state" data-for="4-introspection-and-state">4. Introspection and State</a></li><li class="depth-1"><a href="#5-execution-and-flow-control" data-for="5-execution-and-flow-control">5. Execution and Flow Control</a></li><li class="depth-1"><a href="#6-date-and-time" data-for="6-date-and-time">6. Date and Time</a></li><li class="depth-0"><a href="#useful-vivado-tcl-commands" data-for="useful-vivado-tcl-commands">Useful Vivado tcl commands</a></li><li class="depth-1"><a href="#get-objects" data-for="get-objects">Get objects</a></li><li class="depth-1"><a href="#selecting" data-for="selecting">Selecting</a></li></ul></div></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.4.0</a> © 2026</p><ul></ul></footer></div></div></body><script type="application/javascript">function c(){let t=this.parentElement;t.classList.toggle("is-collapsed");let l=t.classList.contains("is-collapsed")?this.scrollHeight:t.scrollHeight;t.style.maxHeight=l+"px";let o=t,e=t.parentElement;for(;e;){if(!e.classList.contains("callout"))return;let n=e.classList.contains("is-collapsed")?e.scrollHeight:e.scrollHeight+o.scrollHeight;e.style.maxHeight=n+"px",o=e,e=e.parentElement}}function i(){let t=document.getElementsByClassName("callout is-collapsible");for(let s of t){let l=s.firstElementChild;if(l){l.addEventListener("click",c),window.addCleanup(()=>l.removeEventListener("click",c));let e=s.classList.contains("is-collapsed")?l.scrollHeight:s.scrollHeight;s.style.maxHeight=e+"px"}}}document.addEventListener("nav",i);window.addEventListener("resize",i);
+</script><script type="module">
+          let mermaidImport = undefined
+          document.addEventListener('nav', async () => {
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
+          });
+          </script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>

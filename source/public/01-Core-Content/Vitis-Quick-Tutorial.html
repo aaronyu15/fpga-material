@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Vitis Quick Tutorial</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="Vitis Quick Tutorial"/><meta property="og:description" content="Here’s the typical design and file generation flow: Petalinux platform customization tutorial ZCU104 platform creation tutorial Phase 1: Project Setup &amp;amp; Hardware Design ..."/><meta property="og:image" content="https://aaronyu15.github.io/fpga-material//static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Here’s the typical design and file generation flow: Petalinux platform customization tutorial ZCU104 platform creation tutorial Phase 1: Project Setup &amp;amp; Hardware Design ..."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="01-Core-Content/Vitis-Quick-Tutorial"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">FPGA Resources</a></h2><div class="spacer mobile-only"></div><div class="search"><button class="search-button" id="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="search-layout" data-preview="true"></div></div></div></div><button class="darkmode" id="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;01-Core-Content&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Others&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Syntax&quot;,&quot;collapsed&quot;:true}]" aria-controls="explorer-content" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="01-Core-Content"><button class="folder-button"><span class="folder-title">01 Core Content</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="01-Core-Content"><li><a href="../01-Core-Content/FPGAs,-SoCs,-and-Development-Boards" data-for="01-Core-Content/FPGAs,-SoCs,-and-Development-Boards">FPGAs, SoCs, and Development Boards</a></li><li><a href="../01-Core-Content/PetaLinux-Quick-Tutorial" data-for="01-Core-Content/PetaLinux-Quick-Tutorial">PetaLinux Quick Tutorial</a></li><li><a href="../01-Core-Content/Vitis-Quick-Tutorial" data-for="01-Core-Content/Vitis-Quick-Tutorial">Vitis Quick Tutorial</a></li><li><a href="../01-Core-Content/Vivado-Quick-Tutorial" data-for="01-Core-Content/Vivado-Quick-Tutorial">Vivado Quick Tutorial</a></li><li><a href="../01-Core-Content/Xilinx-Docs" data-for="01-Core-Content/Xilinx-Docs">Xilinx Docs</a></li><li><a href="../01-Core-Content/Xilinx-Terminology" data-for="01-Core-Content/Xilinx-Terminology">Xilinx Terminology</a></li></ul></div></li><li><div class="folder-outer "><ul style="padding-left:0;" class="content" data-folderul></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Others"><button class="folder-button"><span class="folder-title">Others</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Others"><li><a href="../Others/Git-Command-Line" data-for="Others/Git-Command-Line">Git Command Line</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Syntax"><button class="folder-button"><span class="folder-title">Syntax</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Syntax"><li><a href="../Syntax/Bash" data-for="Syntax/Bash">Bash</a></li><li><a href="../Syntax/LaTeX" data-for="Syntax/LaTeX">LaTeX</a></li><li><a href="../Syntax/Makefile" data-for="Syntax/Makefile">Makefile</a></li><li><a href="../Syntax/Tcl" data-for="Syntax/Tcl">Tcl</a></li></ul></div></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../01-Core-Content/">01 Core Content</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Vitis Quick Tutorial</a></div></nav><h1 class="article-title">Vitis Quick Tutorial</h1><p show-comma="true" class="content-meta"><span>Apr 08, 2026</span><span>13 min read</span></p></div></div><article class="popover-hint"><p>Here’s the typical design and file generation flow:</p>
+<p><a href="https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1/Vitis_Platform_Creation/Feature_Tutorials/02_petalinux_customization" class="external">Petalinux platform customization tutorial<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>
+<a href="https://github.com/Xilinx/Vitis-Tutorials/blob/2024.1/Vitis_Platform_Creation/Design_Tutorials/02-Edge-AI-ZCU104/README.md" class="external">ZCU104 platform creation tutorial<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<h2 id="phase-1-project-setup--hardware-design-vivado-design-suite">Phase 1: Project Setup &amp; Hardware Design (Vivado Design Suite)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-1-project-setup--hardware-design-vivado-design-suite" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This phase involves defining the hardware system, including the PS configuration, PL custom logic, and how they connect.</p>
+<p><strong>1. Board Definition Files</strong></p>
+<ul>
+<li><strong>File Names:</strong> <code>board.xml</code>, <code>preset.xml</code>, part definition files (e.g., <code>part0_pins.xml</code>), etc., usually grouped in a board-specific folder.</li>
+<li><strong>Purpose:</strong>
+<ul>
+<li><code>board.xml</code>: Describes the board, its components (FPGA, DDR, peripherals like Ethernet PHYs, clocks), interfaces, and connections. It allows Vivado to understand the board’s capabilities and automate certain configurations.</li>
+<li><code>preset.xml</code>: Provides predefined configuration settings for the PS (e.g., DDR timing, peripheral settings) specific to the board, which can be applied in IP Integrator.</li>
+</ul>
+</li>
+<li><strong>Inputs:</strong> Supplied by the board manufacturer (e.g., Xilinx, Avnet, Digilent). These are based on the board’s schematics and component datasheets.</li>
+<li><strong>Generated By:</strong> Board Manufacturer. You <em>use</em> these files, not generate them at this stage.</li>
+<li><strong>Tool Interaction:</strong> When creating a new Vivado project, you can select your board from a list if its definition files are installed. This automatically configures the project for the target FPGA part and makes board presets available.</li>
+</ul>
+<p><strong>2. Vivado Project Creation</strong></p>
+<ul>
+<li><strong>File Name (Project File):</strong> <code>&lt;project_name>.xpr</code></li>
+<li><strong>Purpose:</strong> Main Vivado project file that manages all source files, settings, reports, and design runs.</li>
+<li><strong>Inputs:</strong> Board definition files (optional, but recommended for board-based designs), target device selection, user-created or imported HDL source files, IP.</li>
+<li><strong>Generated By:</strong> Vivado Design Suite (GUI or Tcl scripts).
+<ul>
+<li>
+<p><strong>Tcl Example (Simplified):</strong></p>
+<p>Tcl</p>
+<pre><code>create_project my_project ./my_project_dir -part &lt;part_name>
+set_property board_part &lt;vendor>:&lt;board>:&lt;name>:&lt;version> [current_project]
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. IP Integrator Block Design (for PS-PL System)</strong></p>
+<ul>
+<li><strong>File Name:</strong> <code>&lt;block_design_name>.bd</code></li>
+<li><strong>Purpose:</strong> A graphical design file within Vivado representing the system. It’s where you instantiate and configure the PS (e.g., Zynq Processing System IP), add PL IP blocks (custom or from Xilinx catalog), and connect them.</li>
+<li><strong>Inputs:</strong> PS configuration presets (from board files or manual), Xilinx IP catalog, user-created IP.</li>
+<li><strong>Generated By:</strong> Vivado IP Integrator (GUI or Tcl scripts).
+<ul>
+<li>
+<p><strong>Tcl Example (Conceptual - adding Zynq PS):</strong></p>
+<p>Tcl</p>
+<pre><code>create_bd_design &quot;my_system&quot;
+current_bd_instance [create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e:&lt;version> zynq_ps_e_0]
+apply_bd_automation -rule xilinx.com:bd_rule:zynq_ultra_ps_e -config {Master         &quot;Disable&quot; Slave &quot;Disable&quot; }  [get_bd_cells zynq_ps_e_0]
+# ... more configuration and connections ...
+validate_bd_design
+save_bd_design
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. HDL Wrapper for Block Design</strong></p>
+<ul>
+<li><strong>File Name:</strong> <code>&lt;block_design_name>_wrapper.v</code> (Verilog) or <code>&lt;block_design_name>_wrapper.vhd</code> (VHDL)</li>
+<li><strong>Purpose:</strong> A top-level HDL file that instantiates the block design, making it a synthesizable module that Vivado can process.</li>
+<li><strong>Inputs:</strong> The <code>.bd</code> file.</li>
+<li><strong>Generated By:</strong> Vivado (usually an option to “Create HDL Wrapper” for the block design).
+<ul>
+<li>
+<p><strong>Tcl Example:</strong></p>
+<p>Tcl</p>
+<pre><code>make_wrapper -files [get_files my_system.bd] -top
+add_files -norecurse my_system_wrapper.v # Or .vhd
+update_compile_order -fileset sources_1
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>5. Constraints Files</strong></p>
+<ul>
+<li><strong>File Name:</strong> <code>&lt;constraints_file_name>.xdc</code> (Xilinx Design Constraints)</li>
+<li><strong>Purpose:</strong> Defines timing constraints (clock periods, input/output delays), pin assignments (connecting top-level HDL signals to FPGA package pins), and other physical constraints.</li>
+<li><strong>Inputs:</strong> Board schematics (for pin locations), design requirements (for timing), IP datasheets. Board definition files often contribute an initial set of XDC files for basic peripherals.</li>
+<li><strong>Generated By:</strong> User-created text file, or partially auto-generated by Vivado for IP.</li>
+<li><strong>Tool Interaction:</strong> Added to the Vivado project’s constraint set.</li>
+</ul>
+<p><strong>6. Synthesis</strong></p>
+<ul>
+<li><strong>Key Output Files:</strong> Synthesized netlist, synthesis reports.
+<ul>
+<li><strong>File Name (Netlist - Conceptual):</strong> Checkpoint file like <code>&lt;project_name>.runs/synth_1/&lt;top_module_name>.dcp</code> (Design Checkpoint)</li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> Translates the HDL code (including the PS configuration from the block design and any PL logic) into a gate-level netlist specific to the target FPGA architecture. The Design Checkpoint (DCP) captures this.</li>
+<li><strong>Inputs:</strong> HDL files (<code>.v</code>, <code>.vhd</code>), XDC files, block design.</li>
+<li><strong>Generated By:</strong> Vivado Synthesis Engine.
+<ul>
+<li>
+<p><strong>Tcl Example:</strong></p>
+<p>Tcl</p>
+<pre><code>launch_runs synth_1 -jobs &lt;number_of_jobs>
+wait_on_run synth_1
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>7. Implementation (Place &amp; Route)</strong></p>
+<ul>
+<li><strong>Key Output Files:</strong> Placed and routed netlist, implementation reports, timing analysis.
+<ul>
+<li><strong>File Name (Netlist - Conceptual):</strong> Checkpoint file like <code>&lt;project_name>.runs/impl_1/&lt;top_module_name>_routed.dcp</code></li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> Takes the synthesized netlist and:
+<ul>
+<li><strong>Place:</strong> Assigns logic elements from the netlist to specific physical locations on the FPGA.</li>
+<li><strong>Route:</strong> Connects these placed logic elements using the FPGA’s routing resources.</li>
+<li>Optimizes for timing and resource usage.</li>
+</ul>
+</li>
+<li><strong>Inputs:</strong> Synthesized netlist (<code>.dcp</code> from synthesis), XDC files.</li>
+<li><strong>Generated By:</strong> Vivado Implementation Engine.
+<ul>
+<li>
+<p><strong>Tcl Example:</strong></p>
+<p>Tcl</p>
+<pre><code>launch_runs impl_1 -jobs &lt;number_of_jobs>
+wait_on_run impl_1
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>8. Bitstream Generation</strong></p>
+<ul>
+<li><strong>File Name:</strong> <code>&lt;project_name>.bit</code> (or <code>&lt;project_name>.bin</code> for raw binary)</li>
+<li><strong>Purpose:</strong> The final configuration file that is loaded onto the FPGA to configure its Programmable Logic (PL). It contains all the information to set the LUTs, flip-flops, routing, and block RAM content.</li>
+<li><strong>Inputs:</strong> Implemented design (<code>.dcp</code> from implementation), XDC files (sometimes specific bitstream generation options).</li>
+<li><strong>Generated By:</strong> Vivado Bitstream Generator.
+<ul>
+<li>
+<p><strong>Tcl Example:</strong></p>
+<p>Tcl</p>
+<pre><code>launch_runs impl_1 -to_step write_bitstream -jobs &lt;number_of_jobs>
+wait_on_run impl_1
+open_run impl_1
+# The .bit file will be in &lt;project_name>.runs/impl_1/
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>9. Hardware Export (XSA - Xilinx Support Archive)</strong></p>
+<ul>
+<li><strong>File Name:</strong> <code>&lt;platform_name>.xsa</code></li>
+<li><strong>Purpose:</strong> A container file that exports the hardware design (including PS configuration, PL metadata, and potentially the bitstream) from Vivado to be used by software development tools like Vitis or PetaLinux. It describes the hardware platform to the software environment. For Zynq, this includes the PS memory map, peripheral configuration, interrupt information, and PL IP interfaces accessible by the PS.</li>
+<li><strong>Inputs:</strong> Implemented design (including PS configuration from IP Integrator), bitstream (optional to include, but usually recommended if PL is used).</li>
+<li><strong>Generated By:</strong> Vivado (File <span>→</span> Export <span>→</span> Export Hardware).
+<ul>
+<li>
+<p><strong>Tcl Example (after bitstream generation):</strong></p>
+<p>Tcl</p>
+<pre><code># Assuming 'my_system_wrapper' is the top-level HDL for your system containing the BD
+write_hw_platform -fixed -file ./my_platform.xsa -include_bit
+# Or if using a block design directly in a more platform-centric flow:
+# write_hw_platform -top &lt;bd_name> -fixed -file ./my_platform.xsa -include_bit
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="phase-2-software-development--system-integration">Phase 2: Software Development &amp; System Integration<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-2-software-development--system-integration" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This phase uses the exported hardware information (XSA) to develop software for the PS and integrate it with the PL. We’ll cover two main paths:</p>
+<p>A. Vitis for Bare-metal/RTOS applications.</p>
+<p>B. PetaLinux Tools for Embedded Linux.</p>
+<h3 id="path-a-vitis-for-bare-metalrtos-applications">Path A: Vitis for Bare-metal/RTOS Applications<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#path-a-vitis-for-bare-metalrtos-applications" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>This is used when you are not running a full Linux OS on the PS, but rather a simple standalone application or a Real-Time Operating System (RTOS).</p>
+<p><strong>10. Vitis Platform Project</strong></p>
+<ul>
+<li><strong>File Name (Platform Directory):</strong> <code>&lt;platform_project_name>/</code> (contains various files like <code>platform.xpfm</code>)
+<ul>
+<li>Key file: <code>&lt;platform_name>.xpfm</code></li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> Creates a software platform definition within Vitis based on the hardware described in the XSA. It includes drivers, libraries, and operating system choices (standalone/RTOS) for the PS.</li>
+<li><strong>Inputs:</strong> <code>.xsa</code> file.</li>
+<li><strong>Generated By:</strong> Vitis IDE or XSCT (Xilinx Software Command-line Tool).
+<ul>
+<li>
+<p><strong>XSCT Example:</strong></p>
+<p>Tcl</p>
+<pre><code># Launch XSCT
+# xsct
+setws /path/to/vitis_workspace
+platform create -name my_platform -hw /path/to/my_platform.xsa
+# Or to also generate a default domain (BSP)
+# platform create -name my_platform -hw /path/to/my_platform.xsa -proc psu_cortexa53_0 -os standalone -arch 64-bit -out /path/to/vitis_workspace
+platform active my_platform
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>11. Domain / Board Support Package (BSP)</strong></p>
+<ul>
+<li><strong>File Name (BSP Directory):</strong> <code>&lt;platform_project_name>/&lt;domain_name>_bsp/</code> (contains <code>Makefile</code>, <code>system.mss</code>, drivers, libraries)
+<ul>
+<li>Key file: <code>system.mss</code> (Microprocessor Software Specification)</li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> A collection of software drivers, libraries, and configuration settings tailored to the specific hardware platform (defined by XSA) and chosen operating system (e.g., standalone, FreeRTOS). It provides the low-level software interface for your application to interact with the hardware.</li>
+<li><strong>Inputs:</strong> Platform project (derived from XSA), choice of OS/processor core.</li>
+<li><strong>Generated By:</strong> Vitis IDE or XSCT.
+<ul>
+<li>
+<p><strong>XSCT Example (if not created with platform):</strong></p>
+<p>Tcl</p>
+<pre><code>platform active my_platform
+domain create -name my_app_domain -os standalone -proc psu_cortexa53_0 # Or other processor like psu_cortexr5_0
+# Or if the platform already has a default domain, you can modify it
+# bsp config &lt;setting> &lt;value>
+# bsp regenerate
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>12. Vitis Application Project</strong></p>
+<ul>
+<li><strong>File Names (Application Directory):</strong> <code>&lt;app_project_name>/</code> (contains source code <code>.c</code>, <code>.h</code>, <code>linker_script.ld</code>, <code>Makefile</code>)
+<ul>
+<li>Key output: <code>&lt;app_project_name>.elf</code> (Executable and Linkable Format)</li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> Contains the user’s application code (e.g., “Hello World,” control logic for PL). The <code>.elf</code> file is the compiled executable that will run on the PS processor.</li>
+<li><strong>Inputs:</strong> BSP, user source code, linker script (often auto-generated by Vitis based on BSP and memory map).</li>
+<li><strong>Generated By:</strong> Vitis IDE or XSCT (compilation is typically done via makefiles managed by Vitis).
+<ul>
+<li>
+<p><strong>XSCT Example (Creating an application):</strong></p>
+<p>Tcl</p>
+<pre><code>platform active my_platform
+app create -name my_hello_world_app -platform my_platform -domain my_app_domain -template {Hello World}
+app build -name my_hello_world_app
+# The .elf will be in &lt;app_project_name>/Debug/ or &lt;app_project_name>/Release/
+</code></pre>
+</li>
+<li>
+<p><strong><code>&lt;app_project_name>.elf</code></strong>: This is the executable for the PS. It can be loaded via JTAG for debugging or included in the boot image.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="path-b-petalinux-tools-for-embedded-linux">Path B: PetaLinux Tools for Embedded Linux<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#path-b-petalinux-tools-for-embedded-linux" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>This is used when you want to run a Linux operating system on the PS.</p>
+<p><strong>13. PetaLinux Project Creation</strong></p>
+<ul>
+<li><strong>File Names (Project Directory):</strong> <code>&lt;petalinux_project_name>/</code> (contains <code>project-spec/</code>, <code>components/</code>, <code>hardware/</code>, <code>build/</code>, etc.)</li>
+<li><strong>Purpose:</strong> Sets up the build environment for a custom Embedded Linux distribution tailored to your hardware.</li>
+<li><strong>Inputs:</strong> <code>.xsa</code> file.</li>
+<li><strong>Generated By:</strong> PetaLinux command-line tool.
+<ul>
+<li>
+<p><strong>PetaLinux Command:</strong></p>
+<p>Bash</p>
+<pre><code>petalinux-create -t project -n my_petalinux_project --template zynqMP # Or --template zynq for Zynq-7000
+cd my_petalinux_project
+petalinux-config --get-hw-description=/path/to/my_platform.xsa # This copies the XSA and extracts hardware info
+</code></pre>
+</li>
+<li>
+<p>The <code>--get-hw-description</code> step will create a directory like <code>components/plnx_workspace/device-tree/device-tree/</code> (path may vary slightly) containing auto-generated device tree source files (<code>*.dtsi</code>) based on the XSA. It also updates configuration files within <code>project-spec/configs/</code>.</p>
+</li>
+<li>
+<p><strong>XSA file (again):</strong> Copied into the PetaLinux project (e.g., to <code>hardware/&lt;platform_name>/&lt;platform_name>.xsa</code> or a similar path) and used as the definitive hardware description.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>14. PetaLinux Configuration (System, Kernel, RootFS, U-Boot)</strong></p>
+<ul>
+<li><strong>File Names:</strong>
+<ul>
+<li>System Config: <code>project-spec/configs/config</code></li>
+<li>Kernel Config: <code>project-spec/meta-user/recipes-kernel/linux/linux-xlnx/defconfig</code> (or fragment files)</li>
+<li>RootFS Config: <code>project-spec/configs/rootfs_config</code></li>
+<li>U-Boot Config: <code>project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend</code> and associated config fragments.</li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> Allows customization of the Linux system:
+<ul>
+<li><code>petalinux-config</code>: Top-level system settings (e.g., primary boot device, serial console).</li>
+<li><code>petalinux-config -c kernel</code>: Linux kernel features, drivers.</li>
+<li><code>petalinux-config -c rootfs</code>: User applications, libraries, packages to include in the root filesystem.</li>
+<li><code>petalinux-config -c u-boot</code>: U-Boot bootloader settings.</li>
+</ul>
+</li>
+<li><strong>Inputs:</strong> Default configurations provided by PetaLinux, user choices made through menuconfig interfaces. The hardware information from XSA heavily influences default driver selections in the kernel.</li>
+<li><strong>Generated By:</strong> PetaLinux command-line tool (which invokes <code>menuconfig</code>, <code>kconfig</code>, etc.).</li>
+</ul>
+<p><strong>15. PetaLinux Build</strong></p>
+<ul>
+<li><strong>File Names (Key Outputs in <code>images/linux/</code>):</strong>
+<ul>
+<li><code>BOOT.BIN</code>: The primary boot image (more on this in Phase 3).</li>
+<li><code>image.ub</code>: FIT (Flattened Image Tree) containing the Linux kernel, device tree blob (DTB), and optionally a RAMDisk.</li>
+<li><code>rootfs.tar.gz</code> / <code>rootfs.cpio.gz.u-boot</code> / <code>rootfs.jffs2</code> / <code>rootfs.ext4</code>: Various formats of the root filesystem.</li>
+<li><code>u-boot.elf</code>: U-Boot bootloader executable.</li>
+<li><code>system.dtb</code>: Device Tree Blob (compiled device tree for the kernel).</li>
+<li><code>zynqmp_fsbl.elf</code> (for ZynqMP if FSBL is built by PetaLinux, though PLM is more common now) / <code>plm.elf</code> (Platform Loader Manager for Versal/ZynqMP).</li>
+<li><code>psm_fw.elf</code> (PSM Firmware for ZynqMP).</li>
+<li><code>bl31.elf</code> (ARM Trusted Firmware - ATF - component for ZynqMP).</li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> Compiles all components: U-Boot, Linux kernel, device tree, root filesystem, and first-stage bootloaders/platform management firmware.</li>
+<li><strong>Inputs:</strong> PetaLinux project configuration, user-added applications/recipes, source code for kernel/U-Boot (downloaded by PetaLinux).</li>
+<li><strong>Generated By:</strong> PetaLinux command-line tool.
+<ul>
+<li>
+<p><strong>PetaLinux Command:</strong></p>
+<p>Bash</p>
+<pre><code>petalinux-build
+</code></pre>
+</li>
+<li>
+<p><strong>Device Tree Blob (<code>system.dtb</code>):</strong> Compiled from device tree source files (<code>.dts</code>, <code>.dtsi</code>) located in <code>components/plnx_workspace/device-tree/device-tree/</code> (auto-generated from XSA and can be user-extended). The <code>petalinux-build</code> process handles this compilation.</p>
+</li>
+<li>
+<p><strong><code>image.ub</code>:</strong> This is a FIT image. It’s a standard U-Boot image format that can bundle multiple components. For Linux, it typically includes:</p>
+<ul>
+<li>Linux kernel image (<code>Image</code> or <code>zImage</code>)</li>
+<li>Device Tree Blob (<code>system.dtb</code>)</li>
+<li>Optionally, a RAM-based root filesystem (<code>rootfs.cpio.gz.u-boot</code>) The <code>petalinux-build</code> command assembles this.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="phase-3-boot-image-generation--deployment">Phase 3: Boot Image Generation &amp; Deployment<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-3-boot-image-generation--deployment" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This phase involves creating the final bootable image(s) to load onto the board’s boot media (e.g., SD card, QSPI flash).</p>
+<p><strong>16. Boot Image Packaging (BOOT.BIN)</strong></p>
+<ul>
+<li><strong>File Name:</strong> <code>BOOT.BIN</code></li>
+<li><strong>Purpose:</strong> A single binary file that the Zynq/ZynqMP BootROM loads from the selected boot device (QSPI, SD card, etc.). It contains the initial software needed to bring up the system. The contents vary based on architecture and configuration.
+<ul>
+<li><strong>For Zynq UltraScale+ MPSoC, typically contains:</strong>
+<ul>
+<li><strong>PLM (Platform Loader Manager):</strong> <code>plm.elf</code> (replaces FSBL in older Zynq-7000). Responsible for basic system initialization, loading PSM firmware, configuring clocks/PLLs, loading TF-A, and U-Boot. Also handles loading the PL bitstream if included.</li>
+<li><strong>PSM Firmware:</strong> <code>psmfw.elf</code>. Manages platform-level power and safety functions.</li>
+<li><strong>Bitstream (Optional):</strong> <code>&lt;project_name>.bit</code>. The FPGA configuration data. Can be loaded by PLM.</li>
+<li><strong>TF-A (ARM Trusted Firmware-A):</strong> <code>bl31.elf</code>. Sets up the secure execution environment, handles transition to U-Boot in the non-secure world.</li>
+<li><strong>U-Boot:</strong> <code>u-boot.elf</code>. The second-stage bootloader, responsible for loading the Linux kernel (<code>image.ub</code>).</li>
+<li>(Optionally other components like PMU firmware for older Zynq or custom partitions)</li>
+</ul>
+</li>
+<li><strong>For Zynq-7000, typically contains:</strong>
+<ul>
+<li><strong>FSBL (First Stage Bootloader):</strong> <code>zynq_fsbl.elf</code>. Initializes the PS, loads the bitstream (optional), and then loads U-Boot.</li>
+<li><strong>Bitstream (Optional):</strong> <code>&lt;project_name>.bit</code>.</li>
+<li><strong>U-Boot:</strong> <code>u-boot.elf</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Inputs:</strong>
+<ul>
+<li>A Boot Image Format file (<code>.bif</code>) which specifies the components and their order.</li>
+<li>The individual component files (<code>plm.elf</code>, <code>psmfw.elf</code>, <code>.bit</code>, <code>bl31.elf</code>, <code>u-boot.elf</code>, etc.).</li>
+</ul>
+</li>
+<li><strong>Generated By:</strong>
+<ul>
+<li>
+<p><strong>PetaLinux:</strong> The <code>petalinux-package --boot</code> command (often run implicitly by <code>petalinux-build</code> or can be run manually). It auto-generates a BIF file.</p>
+<p>Bash</p>
+<pre><code>petalinux-package --boot --fsbl images/linux/zynqmp_fsbl.elf --fpga images/linux/system.bit --u-boot images/linux/u-boot.elf --pmufw images/linux/pmufw.elf --atf images/linux/bl31.elf --plm images/linux/plm.elf --psmfw images/linux/psm_fw.elf --force
+# Note: PetaLinux often has simpler ways to package depending on project setup,
+# e.g., just ensuring components are in images/linux/ and running petalinux-build.
+# Or specifying partitions in project-spec/configs/config
+</code></pre>
+</li>
+<li>
+<p><strong>Vitis <code>bootgen</code> utility:</strong> Can be used manually with a user-created BIF file for more custom <code>BOOT.BIN</code> creation, especially in non-PetaLinux flows or for advanced use cases. <strong>Example BIF file (<code>bootimage.bif</code>):</strong></p>
+<pre><code>//arch: zynqmp
+the_ROM_image:
+{
+    [bootloader, destination_cpu=a53-0] images/linux/plm.elf
+    [pmufw_image] images/linux/psmfw.elf
+    [destination_device=pl] images/linux/system.bit // If including bitstream
+    [destination_cpu=a53-0, exception_level=el3] images/linux/bl31.elf
+    [destination_cpu=a53-0, exception_level=el2] images/linux/u-boot.elf
+}
+</code></pre>
+<p><strong><code>bootgen</code> command (run via XSCT or shell if <code>bootgen</code> is in PATH):</strong></p>
+<p>Bash</p>
+<pre><code># xsct
+# bootgen -arch zynqmp -image bootimage.bif -w -o BOOT.BIN
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>17. Linux Image (already mentioned but crucial for boot)</strong></p>
+<ul>
+<li><strong>File Name:</strong> <code>image.ub</code></li>
+<li><strong>Purpose:</strong> A FIT image containing the Linux kernel, device tree, and optionally a RAMDisk. U-Boot loads this file from the boot media (e.g., SD card FAT partition) into RAM and then boots the kernel.</li>
+<li><strong>Inputs:</strong> Compiled kernel image (<code>Image</code> or <code>zImage</code>), compiled device tree (<code>system.dtb</code>), RAMDisk (if used), U-Boot mkimage utility configuration.</li>
+<li><strong>Generated By:</strong> PetaLinux build process (using <code>mkimage</code> utility from U-Boot source).</li>
+</ul>
+<p><strong>Deployment:</strong></p>
+<p>Typically, for an SD card boot on a Zynq MPSoC:</p>
+<ol>
+<li><strong>Boot Partition (FAT32):</strong>
+<ul>
+<li><code>BOOT.BIN</code></li>
+<li><code>image.ub</code></li>
+<li>Potentially <code>boot.scr</code> (U-Boot script for custom boot sequences)</li>
+</ul>
+</li>
+<li><strong>RootFS Partition (ext4):</strong>
+<ul>
+<li>The extracted contents of <code>rootfs.tar.gz</code> or the <code>rootfs.ext4</code> image.</li>
+</ul>
+</li>
+</ol>
+<p>This flow covers the major steps and files from board definition to a bootable Linux system. Each file plays a critical role in bridging the gap between hardware design, low-level software, and the high-level operating system. The specific tools (Vivado, Vitis, XSCT, PetaLinux) are used at different stages to generate and manage these files.</p>
+<h1 id="baremetal-application-notes">Baremetal application notes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#baremetal-application-notes" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<ul>
+<li><code>rm -rf *</code> the <code>_ide</code> directory when the <code>.xsa</code> changes to reload the new bitstream in the launch configuration (or make a new launch configuration) otherwise it uses outdated hardware bitstream.</li>
+</ul>
+<h1 id="vitis-hls-notes">Vitis HLS notes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vitis-hls-notes" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="crtl-cosim">C/RTL Cosim<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#crtl-cosim" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>This error appears when running because Ubuntu 22.04 only goes up to GLIBC_2.35. Way to go Xilinx.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="C" data-theme="github-light github-dark"><code data-language="C" data-theme="github-light github-dark" style="display:grid;"><span data-line><span> INFO: [COSIM 212-333] Generating C post check test bench ...</span></span>
+<span data-line><span> INFO: [COSIM 212-12] Generating RTL test bench ...</span></span>
+<span data-line><span> INFO: [COSIM 212-1] *** C/RTL co-simulation file generation completed. ***</span></span>
+<span data-line><span> INFO: [COSIM 212-323] Starting verilog simulation. </span></span>
+<span data-line><span> INFO: [COSIM 212-15] Starting XSIM ...</span></span>
+<span data-line><span> sh: /usr/lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.36' not found (required by sh)</span></span>
+<span data-line><span>[ERROR] ERROR: [COSIM 212-4] *** C/RTL co-simulation finished: FAIL ***</span></span>
+<span data-line><span> ERROR: </span></span>
+<span data-line><span> INFO: [HLS 200-112] Total CPU user time: 3423.5 seconds. Total CPU system time: 7.66 seconds. Total elapsed time: 3432.33 seconds; peak allocated memory: 461.973 MB.</span></span>
+<span data-line><span>[ERROR] Failed to run co-simulation</span></span></code></pre></figure>
+<p>Strangely, this might be caused by the fact that the script is trying to use <code>sh</code> which is set to <code>/Xilinx/PetaLinux/sysroots/x86_64-petalinux-linux/bin/sh</code> when sourcing the PetaLinux stuff. Inside of the <code>run_sim.tcl</code> file in the generated directory of the cosim, you can change this line to use <code>/bin/bash</code> and it will work:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {[file isfile run_xsim.sh]} {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ret</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [catch </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">{eval</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> exec</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;/bin/bash ./run_xsim.sh | tee temp2.log&quot;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> >&amp;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">@</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> stdout}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> err]</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="toc desktop-only"><button type="button" id="toc" class aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content" class><ul class="overflow"><li class="depth-1"><a href="#phase-1-project-setup--hardware-design-vivado-design-suite" data-for="phase-1-project-setup--hardware-design-vivado-design-suite">Phase 1: Project Setup &amp; Hardware Design (Vivado Design Suite)</a></li><li class="depth-1"><a href="#phase-2-software-development--system-integration" data-for="phase-2-software-development--system-integration">Phase 2: Software Development &amp; System Integration</a></li><li class="depth-2"><a href="#path-a-vitis-for-bare-metalrtos-applications" data-for="path-a-vitis-for-bare-metalrtos-applications">Path A: Vitis for Bare-metal/RTOS Applications</a></li><li class="depth-2"><a href="#path-b-petalinux-tools-for-embedded-linux" data-for="path-b-petalinux-tools-for-embedded-linux">Path B: PetaLinux Tools for Embedded Linux</a></li><li class="depth-1"><a href="#phase-3-boot-image-generation--deployment" data-for="phase-3-boot-image-generation--deployment">Phase 3: Boot Image Generation &amp; Deployment</a></li><li class="depth-0"><a href="#baremetal-application-notes" data-for="baremetal-application-notes">Baremetal application notes</a></li><li class="depth-0"><a href="#vitis-hls-notes" data-for="vitis-hls-notes">Vitis HLS notes</a></li><li class="depth-1"><a href="#crtl-cosim" data-for="crtl-cosim">C/RTL Cosim</a></li></ul></div></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.4.0</a> © 2026</p><ul></ul></footer></div></div></body><script type="application/javascript">function c(){let t=this.parentElement;t.classList.toggle("is-collapsed");let l=t.classList.contains("is-collapsed")?this.scrollHeight:t.scrollHeight;t.style.maxHeight=l+"px";let o=t,e=t.parentElement;for(;e;){if(!e.classList.contains("callout"))return;let n=e.classList.contains("is-collapsed")?e.scrollHeight:e.scrollHeight+o.scrollHeight;e.style.maxHeight=n+"px",o=e,e=e.parentElement}}function i(){let t=document.getElementsByClassName("callout is-collapsible");for(let s of t){let l=s.firstElementChild;if(l){l.addEventListener("click",c),window.addCleanup(()=>l.removeEventListener("click",c));let e=s.classList.contains("is-collapsed")?l.scrollHeight:s.scrollHeight;s.style.maxHeight=e+"px"}}}document.addEventListener("nav",i);window.addEventListener("resize",i);
+</script><script type="module">
+          let mermaidImport = undefined
+          document.addEventListener('nav', async () => {
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
+          });
+          </script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>

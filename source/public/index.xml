@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>FPGA Resources</title>
+      <link>https://aaronyu15.github.io/fpga-material/</link>
+      <description>Last 10 notes on FPGA Resources</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>Git Command Line</title>
+    <link>https://aaronyu15.github.io/fpga-material/Others/Git-Command-Line</link>
+    <guid>https://aaronyu15.github.io/fpga-material/Others/Git-Command-Line</guid>
+    <description>Complete Git Workflow and Troubleshooting Guide Basic Git Workflow 1. Initial Setup # Configure Git (do this once) git config --global user.name &quot;Your Name&quot; git config --global user.email &quot;your.email@example.com&quot; # Clone a repository git clone github.com/username/repo.git cd repo 2.</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>Bash</title>
+    <link>https://aaronyu15.github.io/fpga-material/Syntax/Bash</link>
+    <guid>https://aaronyu15.github.io/fpga-material/Syntax/Bash</guid>
+    <description>A Guide to Bash Scripting Variables store data. In Bash, there are no data types in the traditional sense; all variables are treated as strings. Defining Variables Always wrap values in quotes.</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>LaTeX</title>
+    <link>https://aaronyu15.github.io/fpga-material/Syntax/LaTeX</link>
+    <guid>https://aaronyu15.github.io/fpga-material/Syntax/LaTeX</guid>
+    <description>Basic Syntax Comments are made using %, and can also be used to ‘escape’ newline characters. There are 4 kinds of dashes. - Normal dash (hyphen) used for compound words/word splitting.</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>Makefile</title>
+    <link>https://aaronyu15.github.io/fpga-material/Syntax/Makefile</link>
+    <guid>https://aaronyu15.github.io/fpga-material/Syntax/Makefile</guid>
+    <description>A Comprehensive Guide to Makefile Syntax and Usage Make is a powerful build automation tool that automatically builds executable programs and libraries from source code by reading ...</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>Tcl</title>
+    <link>https://aaronyu15.github.io/fpga-material/Syntax/Tcl</link>
+    <guid>https://aaronyu15.github.io/fpga-material/Syntax/Tcl</guid>
+    <description>A Practical Guide to Tcl Scripting: Syntax and Templates Tcl (Tool Command Language) is a powerful, dynamic scripting language known for its simple syntax and easy integration with ...</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>FPGAs, SoCs, and Development Boards</title>
+    <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/FPGAs,-SoCs,-and-Development-Boards</link>
+    <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/FPGAs,-SoCs,-and-Development-Boards</guid>
+    <description>This page lists and explains the various FPGA chips and development boards available, categorised based on the producer (Xilinx, Altera, 3rd party), how much it costs, and the ease ...</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>PetaLinux Quick Tutorial</title>
+    <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/PetaLinux-Quick-Tutorial</link>
+    <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/PetaLinux-Quick-Tutorial</guid>
+    <description>UG1144 - PetaLinux Tools Documentation Create a new petalinux project: petalinux-create project [-s &lt;path-to-bsp&gt;] --name &lt;project-name&gt; --template [versal|zynqMP|zynq|microblaze] ...</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>Vitis Quick Tutorial</title>
+    <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vitis-Quick-Tutorial</link>
+    <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vitis-Quick-Tutorial</guid>
+    <description>Here’s the typical design and file generation flow: Petalinux platform customization tutorial ZCU104 platform creation tutorial Phase 1: Project Setup &amp; Hardware Design ...</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>Landing Page</title>
+    <link>https://aaronyu15.github.io/fpga-material/</link>
+    <guid>https://aaronyu15.github.io/fpga-material/</guid>
+    <description>This vault discusses the following topics: FPGA chips, SoCs, and Development Boards. How to use Vivado to develop hardware applications. How to use Vitis to program processor cores and interact with the programmable fabric.</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>Vivado Quick Tutorial</title>
+    <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vivado-Quick-Tutorial</link>
+    <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vivado-Quick-Tutorial</guid>
+    <description>TBD.</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

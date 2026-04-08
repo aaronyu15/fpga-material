@@ -209,6 +209,8 @@
   },
   "active": "86a6698e10aa16a9",
   "lastOpenFiles": [
+    "private/Others/Git Command Line.md",
+    "private/Others",
     "index.md",
     "01 Core Content/PetaLinux Quick Tutorial.md",
     "01 Core Content/Vitis Quick Tutorial.md",
@@ -238,7 +240,6 @@
     "private/Debug Notes/Vitis Notes of Suffering.md",
     "private/Debug Notes",
     "private/Design Notes/Vitis Notes.md",
-    "private/Design Notes/Vitis Baremetal.md",
     "private/Design Notes",
     "private/Linux resources",
     "private/User Guides",
@@ -252,7 +253,6 @@
     "attachments/Pasted image 20251113002055.png",
     "attachments/Pasted image 20251112142151.png",
     "attachments/Pasted image 20251112141927.png",
-    "Debug Notes",
     "attachments/Pasted image 20251016022007.png",
     "attachments/Pasted image 20251016021841.png"
   ]

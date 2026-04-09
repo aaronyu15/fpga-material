@@ -44,12 +44,6 @@ Target Communication Framework.
 ### SDT
 System Device Tree.
 
-### PS
-Processing System.
-
-### PL
-Programmable Logic.
-
 ### AXI
 Advanced eXtensible Interface.
 

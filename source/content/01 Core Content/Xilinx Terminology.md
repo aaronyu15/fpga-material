@@ -13,7 +13,7 @@ Waivers are used to suppress things like DRC messages.
 
 # Acronyms 
 
-## VIvado Related
+## Vivado Related
 ### APU
 Application Processing Unit - One of the processors on the Zynq SoC. Specifically, this refers to the ARM Cortex-A9 core(s) for Zynq-7000 SoCs, and ARM Cortex-A53 core(s) for Zynq UltraScale+ SoCs.
 

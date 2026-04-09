@@ -6,12 +6,6 @@
       <description>Last 10 notes on FPGA Resources</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Git Command Line</title>
-    <link>https://aaronyu15.github.io/fpga-material/Others/Git-Command-Line</link>
-    <guid>https://aaronyu15.github.io/fpga-material/Others/Git-Command-Line</guid>
-    <description>Complete Git Workflow and Troubleshooting Guide Basic Git Workflow 1. Initial Setup # Configure Git (do this once) git config --global user.name &quot;Your Name&quot; git config --global user.email &quot;your.email@example.com&quot; # Clone a repository git clone github.com/username/repo.git cd repo 2.</description>
-    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
-  </item><item>
     <title>Bash</title>
     <link>https://aaronyu15.github.io/fpga-material/Syntax/Bash</link>
     <guid>https://aaronyu15.github.io/fpga-material/Syntax/Bash</guid>
@@ -64,6 +58,12 @@
     <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vivado-Quick-Tutorial</link>
     <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vivado-Quick-Tutorial</guid>
     <description>TBD.</description>
+    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
+  </item><item>
+    <title>Xilinx Docs</title>
+    <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/Xilinx-Docs</link>
+    <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/Xilinx-Docs</guid>
+    <description>...</description>
     <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
   </item>
     </channel>

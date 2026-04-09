@@ -20,6 +20,12 @@ Application Processing Unit - One of the processors on the Zynq SoC. Specificall
 ### RPU
 Realtime Processing Unit - One of the processors on the Zynq UltraScale+ MPSoC. Specifically, this refers to the ARM Cortex-R5F core(s).
 
+### PS
+Processing System - The side of the "FPGA" that has the ARM core CPUs. This is in contrast to the PL, which contains the FPGA LUTs, FFs, and other programmable logic.
+
+### PL
+Programmable Logic - The side of the "FPGA" that has the configurable LUTs, FFs, etc. This is in contrast to the PS, which contains the ARM core CPUs and other hard IP.
+
 ### BSP    
 Board Support Package - Support code for a hardware platform/board that helps it initialize the correct applications at power up. Can contain specific information related to operating system boot loaders and device drivers. The 'Standalone' BSP can be used to provide basic processor features.
 

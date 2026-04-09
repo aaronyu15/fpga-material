@@ -6,6 +6,12 @@
       <description>Last 10 notes on FPGA Resources</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>Simple projects to adapt</title>
+    <link>https://aaronyu15.github.io/fpga-material/02-Projects/Simple-projects-to-adapt</link>
+    <guid>https://aaronyu15.github.io/fpga-material/02-Projects/Simple-projects-to-adapt</guid>
+    <description>This page lists some simple but worthwhile projects that others have posted online. Use them to learn how to do cool things, and then adapt those things into your own project work.</description>
+    <pubDate>Thu, 09 Apr 2026 16:19:09 GMT</pubDate>
+  </item><item>
     <title>Bash</title>
     <link>https://aaronyu15.github.io/fpga-material/Syntax/Bash</link>
     <guid>https://aaronyu15.github.io/fpga-material/Syntax/Bash</guid>
@@ -58,12 +64,6 @@
     <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vivado-Quick-Tutorial</link>
     <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/Vivado-Quick-Tutorial</guid>
     <description>TBD.</description>
-    <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
-  </item><item>
-    <title>Xilinx Docs</title>
-    <link>https://aaronyu15.github.io/fpga-material/01-Core-Content/Xilinx-Docs</link>
-    <guid>https://aaronyu15.github.io/fpga-material/01-Core-Content/Xilinx-Docs</guid>
-    <description>...</description>
     <pubDate>Wed, 08 Apr 2026 19:57:21 GMT</pubDate>
   </item>
     </channel>

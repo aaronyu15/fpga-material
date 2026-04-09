@@ -24,6 +24,11 @@ Vitis (formerly known as Vivado HLS) is the supplementary tool that allows you t
 **[[PetaLinux Quick Tutorial ]]**
 PetaLinux is a Linux distribution based on Yocto that has official development support for most of the SoC based development boards. In short, you can run Linux on the SoC, letting the operating system run on the ARM cores while your custom logic runs in the programmable fabric. Note that this is only relevant for SoC based development boards, such as boards that use the Zynq-7000 or Zynq UltraScale+ MPSoC chips. This page introduces the relevant terms and UI elements to begin using PetaLinux. Links to the relevant official Xilinx User Guides are provided within.
 
+## Hands-on Projects
+[[Simple projects to adapt]]
+Walk through some relatively simple projects documented by others to become more familiar with design flows, terminology, and capabilities. 
+
+
 ## References 
 **[[Xilinx Terminology]]**
 This page lists some of the archaic and convoluted terms used by Xilinx in their documents for FPGAs, Vivado, Vitis, and PetaLinux. Useful as a reference when you want to know more about some esoteric term they use.

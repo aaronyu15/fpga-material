@@ -160,7 +160,7 @@ a {
 }
 
 .page {
-  max-width: calc(#{map.get($breakpoints, desktop)} + 300px);
+  max-width: calc(#{map.get($breakpoints, desktop)} + 400px);
   margin: 0 auto;
   & article {
     & > h1 {
@@ -522,16 +522,16 @@ p {
 
   & > table {
     margin: 1rem;
-    padding: 1.5rem;
+    padding: 1rem;
     border-collapse: collapse;
 
     th,
     td {
-      min-width: 75px;
+      min-width: 20px;
     }
 
     & > * {
-      line-height: 2rem;
+      line-height: 1rem;
     }
   }
 }
@@ -543,7 +543,7 @@ th {
 }
 
 td {
-  padding: 0.2rem 0.7rem;
+  padding: 0.7rem 0.7rem;
 }
 
 tr {
